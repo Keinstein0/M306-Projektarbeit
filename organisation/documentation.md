@@ -3,7 +3,8 @@
 
 ### Ausgangslage
 Hunderte wenn nicht Tausende von Satelliten kreisen um die Erde. Manche zeigen dir deine Position, manche beobachten die Sterne und manche kommunizieren die neusten News. Manche dieser Satelliten kann man sogar von Auge im Himmel sehen. Was jedoch mit denjenigen die man nicht von Auge sehen kann? Diese kann man als Laie nur schwer selber finden. 
-Die NASA bietet daher eine HTTP API an von der man die Live-Position aller Satelliten beobachten kann und im JSON format an den Nutzer geschickt.
+Daher bieten teils Anbieter HTTP APIs die die Live-Positionen aller Satelliten beobachten können und im JSON format an den Nutzer schicken.
+
 
 ### Detaillierte Aufgabenstellung
 Als raumfahrt-interessierter Laie möchte ich mich über die Position von unterschiedlichsten Satelliten informieren. Dafür möchte ich einen Web Tracker zur Verfolgung von Satelliten in Echtzeit verwenden. Der Tracker soll es Nutzerinnen und Nutzern ermöglichen, aktuelle Positionen von Satelliten zu visualisieren, deren Flugbahnen nachzuvollziehen und relevante Informationen wie Name, Position, Land, Geschwindigkeit und Antriebsart zu sehen.
@@ -62,7 +63,7 @@ Zum Schluss können Nutzer auf die Web-Page ohne Login zugreifen. Auf der Landin
 
 ## 2.2 Informieren
 ### 2.2.1 REST API
-Für die Informationsbeschaffung der Webseite verwenden wir die REST API der NASA. Hierbei kann man sich fragen ob die Informationen (in der form wie geliefert von der API) alle notwendigen Informationen bietet und ob dies die effizienteste Lösung für das Filtern der Daten ist.
+Für die Informationsbeschaffung der Webseite verwenden wir eine REST API. Diese muss die passenden Informationen in passender form liefern. Hierfür haben wir einige Ansätze für passende APIs, müssen uns jedoch noch für eine passende entscheiden. Am besten könnte diese API auch schon das Filtern übernehmen
 
 ### 2.2.2 Design der Seite
 Für das Design der Seite wollen wir ein 3D orientiertes dynamisches Design. Wichtig ist jedoch auch dass bei einem solchen Design die Webseite Optimiert bleibt und nicht Lagt da dies die Nutzererfahrung signifikant schädigen würde. 
@@ -111,9 +112,9 @@ Die IPA wird natürlich nach den gegebenen Kriterien optimiert und gewertet. Dah
 
 
 
-## 2.3 Entscheiden
+## 2.4 Entscheiden
 //
 
 
-## 2.4 Realisieren
+## 2.5 Realisieren
 //
