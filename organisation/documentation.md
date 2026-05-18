@@ -108,13 +108,93 @@ Die IPA wird natürlich nach den gegebenen Kriterien optimiert und gewertet. Dah
 - 8 Die Applikation soll Web-Basiert sein um sie zugänglicher zu mehr Nutzern zu machen
 
 ## 2.3 Planen
-//
+
+### 2.3.1 Testkonzept
+Ziel: Die Anwendung soll auf Funktionalität, Stabilität und Benutzerfreundlichkeit getestet werden.
+Funktionstest: Überprüfung der Such-, Filter- und Anzeige-Funktionen.
+API-Test: Kontrolle der Verbindung zur NASA API und korrekte Datenübernahme.
+Benutzertest: Prüfung der Benutzeroberfläche und Bedienbarkeit.
+Fehlertest: Überprüfung des Verhaltens bei fehlender Internetverbindung oder API-Fehlern.
+Leistungstest: Kontrolle, ob mindestens 10 Satelliten gleichzeitig dargestellt werden können.
+
+//??//
 
 
+### 2.3.2 Testfallspezifikation
+Wir erstellten Testfälle um unser Projekt effektiv testen zu können und um herauszufinden wenn wir die von uns gesetzten Ziele erreicht haben. Hierfür erstellten wir 6 Passende Testfälle und sie beziehen sich direkt auf unsere Anforderungen
+
+| Nr | Anforderung                       | Test                       | Erwartetes Ergebnis                                                           |
+|----|-----------------------------------|----------------------------|-------------------------------------------------------------------------------|
+| 1  | Mindestens 10 Satelliten anzeigen | 10 Satelliten laden        |     Mindestens 10 Satelliten werden angezeigt                                 |
+| 2  | Suchfunktion                      | Nach Satellitenname suchen |     Der richtige Satellit wird angezeigt                                      |
+| 3  | Filterfunktion                    | Nach Land filtern          |     Nur Satelliten des gewählten Landes erscheinen                            |
+| 4  | 3D-Globus                         | Globus öffnen              |     Satelliten werden auf dem 3D-Globus dargestellt                           |
+| 5  | API-Verbindung                    | API abrufen                |     Daten werden erfolgreich geladen                                          |
+| 6  | Informationsanzeige               | Satellit auswählen         |     Name, Position, Land, Geschwindigkeit und Antriebsart werden angezeigt    |
+
+### 2.3.3
+
+Obwohl unsere Applikation in JavaScript läuft entschieden wir uns unsere Applikation nach den Grundsätzen der Objekt Orientierten Programmierung zu Gruppieren. Mit der grossen Datenmenge mit der wir arbeiten ist das eine Notwendigkeit. 
+
+![uml Diagramm](assets/uml.png)
+
+### 2.3.4
+Die Interaktion zwischen der API und dem Fertigen UI ist eine der wichtigsten Anteile. Daher entschieden wir uns die Daten nach einer Art "Pipeline" zu gruppieren in der sie von der API unterschiedliche Komponenten durchläuft bis die Daten am Schluss angezeigt werden können.
+
+![alt text](assets/interaction.png)
 
 ## 2.4 Entscheiden
-//
 
+Wir mussten uns nur noch entscheiden welche API wir genau verwenden wollten. Da es einige zur Auswahl gab wollten wir die Schnittstelle finden die am besten für unsere Zwecke passt.
+
+Hierfür wollten wir erstmals unsere Prioritäten setzen, dafür verwendeten wir eine Präferenzmatrix.
+
+A ->	Entwicklungsaufwand
+
+B ->	Performance
+
+C ->	Genauigkeit der Satellitenposition
+
+D ->	Erweiterbarkeit
+
+
+|     A vs B    |     A    |
+|---------------|----------|
+|     A vs C    |     A    |
+|     A vs D    |     A    |
+|     B vs C    |     C    |
+|     B vs D    |     D    |
+|     C vs D    |     C    |
+
+Dies bringt uns zum folgenden Resultat:
+
+|      Kriterium                              |      Rang     |      Prozent     |
+|---------------------------------------------|---------------|------------------|
+|     Entwicklungsaufwand                     |     1         |     50%          |
+|     Genauigkeit   der Satellitenposition    |     2         |     0%           |
+|     Erweiterbarkeit                         |     3         |     33%          |
+|     Performance                             |     4         |     17%          |
+
+
+Nun können wir daraus eine Vergleichsmatrix etablieren
+
+|      Kriterium                            |      Gewichtung     |      NASA API     |      GTN     |      CelesTrak + sgp4     |      GTN     |      Externe Plattform     |      GTN     |
+|-------------------------------------------|---------------------|-------------------|--------------|---------------------------|--------------|----------------------------|--------------|
+|     Entwicklungsaufwand                   |     50%             |     1             |     50       |     1                     |     50       |     2                      |     100      |
+|     Performance                           |     0%              |     1             |     0        |     2                     |     0        |     0                      |     0        |
+|     Genauigkeit der Satellitenposition    |     33%             |     2             |     66       |     2                     |     66       |     1                      |     33       |
+|     Erweiterbarkeit                       |     17%             |     1             |     17       |     2                     |     34       |     0                      |     0        |
+
+Das heisst wenn man die Punkte nun auflistet erhält man:
+
+|      Variante            |            |      Punkte     |
+|--------------------------|------------|-----------------|
+|     CelesTrak + sgp4     |            |     150         |
+|     NASA API             |            |     133         |
+|     Externe Plattform    |            |     133         |
+
+
+Fazit: Das CelesTrak API passt für unseres Projekt am besten wegen eine simplere return Struktur (einfacher zu parsen) und ganz simpel eine Endpoint die wir benötigen.
 
 ## 2.5 Realisieren
-//
+////
