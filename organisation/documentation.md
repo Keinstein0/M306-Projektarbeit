@@ -197,4 +197,31 @@ Das heisst wenn man die Punkte nun auflistet erhält man:
 Fazit: Das CelesTrak API passt für unseres Projekt am besten wegen eine simplere return Struktur (einfacher zu parsen) und ganz simpel eine Endpoint die wir benötigen.
 
 ## 2.5 Realisieren
-////
+
+### 2.5.1 Phase 1 (01.06.2026)
+
+Mit Beginn der Realisierungsphase wurde die technische Grundlage für die Anwendung geschaffen. Das Ziel dieser ersten Phase war die Entwicklung der Kernkomponenten, welche für die spätere Darstellung und Interaktion mit dem Satellitenglobus benötigt werden.
+
+#### Aufbau der Globe-Engine
+
+Als zentrale Komponente wurde die Globe-Engine entwickelt. Sie ist für die Initialisierung der ThreeJS-Szene verantwortlich und verwaltet die wichtigsten Elemente wie Szene, Kamera und Renderer. Durch die Kapselung dieser Funktionen in einem eigenen Modul entsteht eine klare Trennung zwischen der technischen Infrastruktur und den späteren Anwendungsfunktionen.
+
+#### Implementierung des 3D-Globus
+
+Für die Darstellung der Erde wurde ein eigener Globe-Komponent erstellt. Dieser erzeugt eine dreidimensionale Kugel und bindet die entsprechenden Erdtexturen ein. Die Trennung in ein eigenes Modul erleichtert spätere Erweiterungen, beispielsweise das Hinzufügen von Satellitenmarkierungen oder weiteren visuellen Ebenen.
+
+#### Entwicklung der Kamerasteuerung
+
+Um eine intuitive Navigation innerhalb der 3D-Szene zu ermöglichen, wurde eine Kamerasteuerung implementiert. Diese erlaubt das Drehen, Zoomen und Verschieben der Ansicht. Dadurch kann der Benutzer verschiedene Regionen der Erde aus unterschiedlichen Perspektiven betrachten.
+
+#### Verarbeitung geografischer Koordinaten
+
+Da Satellitendaten üblicherweise in Längen- und Breitengraden bereitgestellt werden, wurde ein Modul zur Umrechnung geografischer Koordinaten entwickelt. Dieses berechnet die entsprechenden Positionen auf der dreidimensionalen Kugeloberfläche und bildet die Grundlage für die spätere Platzierung von Satellitenobjekten.
+
+#### Darstellung der Atmosphäre
+
+Zur Verbesserung der visuellen Darstellung wurde eine Atmosphärenschicht implementiert. Diese erzeugt einen leichten Leuchteffekt um die Erde und sorgt für ein realistischeres Erscheinungsbild des Globus.
+
+#### Aktueller Stand
+
+Die grundlegende Architektur der Anwendung wurde erfolgreich umgesetzt. Der 3D-Globus kann dargestellt werden und die wichtigsten Basiskomponenten sind vorhanden. In der nächsten Phase wird die Integration der Satellitendaten sowie deren Visualisierung auf dem Globus umgesetzt.

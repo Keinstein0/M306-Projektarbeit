@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    background: radial-gradient(circle at center, #0b0f1a, #000);
+    color: white;
+    overflow: hidden;
+}
+
+/* Layout */
+.app-layout {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Globe container (FULL SCREEN CANVAS AREA) */
+.globe-container {
+    position: absolute;
+    inset: 0;
+}
+
+/* Three.js canvas */
+#app {
+    width: 100%;
+    height: 100%;
+}
+
+/* Control panel (floating) */
+input, button {
+    position: absolute;
+    left: 20px;
+    width: 220px;
+
+    padding: 10px 12px;
+    border-radius: 10px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(20, 25, 40, 0.6);
+    backdrop-filter: blur(10px);
+
+    color: white;
+    outline: none;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Position inputs */
+#lat {
+    top: 20px;
+}
+
+#lon {
+    top: 70px;
+}
+
+/* Button */
+#goBtn {
+    top: 120px;
+    cursor: pointer;
+    background: rgba(80, 140, 255, 0.25);
+    transition: 0.2s ease;
+}
+
+#goBtn:hover {
+    background: rgba(80, 140, 255, 0.45);
+    transform: translateY(-1px);
+}
+
+#goBtn:active {
+    transform: translateY(0px);
+}
+
+/* Optional subtle grid glow */
+.globe-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background: radial-gradient(
+        circle at center,
+        transparent 40%,
+        rgba(0,0,0,0.6)
+    );
+}
