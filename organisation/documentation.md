@@ -205,56 +205,39 @@ Fazit: Das CelesTrak API passt für unseres Projekt am besten wegen eine simpler
 ## 2.5 Realisieren
 
 ### 2.5.1 Aufsetzen des Projektes
-Zu beginn mussten wir das Projekt ersteinmal erstellen. Hierfür begannen wir damit ein Git Repository zu erstellen um uns die Kollaboration später zu vereinfachen und unsere Dateien sicher aufzubewahren. 
+Zu Beginn mussten wir das Projekt erst einmal erstellen. Hierfür begannen wir damit, ein Git Repository zu erstellen, um uns die Kollaboration später zu vereinfachen und unsere Dateien sicher aufzubewahren. 
 
 ![picture of our current github](assets/github.png)
 
-Von dort aus Clonten wir das Repository auf unsere lokalen computer und begannen erstmals mit dem Erstellen der Dokumentationsdokumente. (Repository wurde schon in der I Phase aufgesetzt). Nun erstellten wir die nötigen Ordner im "implementation" Ordner, welcher wieder in 3 Ordner aufgeteilt wurde.
+Von dort aus clonten wir das Repository auf unsere lokalen Computer und begannen erstmals mit dem Erstellen der Dokumentationsdokumente. (Repository wurde schon in der I-Phase aufgesetzt). Nun erstellten wir die nötigen Ordner im "implementation" Ordner, welcher wieder in drei Ordner aufgeteilt wurde:
 
-der Ordner "css" enthält alle unsere Stylesheets. Der Ordner javascript enthält alle unsere javascript Dateien und "textures" enthält alle notwendigen assets. Zudem gibt es das HTML Dokument index.html in welchem sich, in nur einer Seite, unsere gesamte Struktur befindet.
+* der Ordner "css" enthält alle unsere Stylesheets. 
+* der Ordner "javascript" enthält alle unsere JavaScript-Dateien.
+* der Ordner "textures" enthält alle notwendigen Assets. 
+
+Zudem gibt es das HTML-Dokument `index.html`, in welchem sich, in nur einer Seite, unsere gesamte Struktur befindet.
 
 ![our folderstructure](assets/folders.png)
 
-Mit der Ordnerstruktur nun erstellt committeten wir diese wieder auf unser Repository. 
-
 ### 2.5.2 Entwicklung der Globe Engine
+Als zentrale Komponente wurde die Globe-Engine entwickelt. Sie ist für die Initialisierung der ThreeJS-Szene verantwortlich und verwaltet die wichtigsten Elemente wie Szene, Kamera und Renderer. 
 
-Als zentrale Komponente wurde die Globe-Engine entwickelt. Sie ist für die Initialisierung der ThreeJS-Szene verantwortlich und verwaltet die wichtigsten Elemente wie Szene, Kamera und Renderer. Durch die Kapselung dieser Funktionen in einem eigenen Modul entsteht eine klare Trennung zwischen der technischen Infrastruktur und den späteren Anwendungsfunktionen. Wir unterteilten deren Entwicklung in einige Segmente.
+* **Implementierung des 3D-Globus:** Für die Darstellung der Erde wurde ein eigener Globe-Komponent erstellt. Dieser erzeugt eine dreidimensionale Kugel und bindet die entsprechenden Erdtexturen ein. Die Trennung in ein eigenes Modul erleichtert spätere Erweiterungen, beispielsweise das Hinzufügen von Satellitenmarkierungen oder weiteren visuellen Ebenen.
+* **Entwicklung der Kamerasteuerung:** Um eine intuitive Navigation innerhalb der 3D-Szene zu ermöglichen, wurde eine Kamerasteuerung implementiert. Diese erlaubt das Drehen, Zoomen und Verschieben der Ansicht. Dadurch kann der Benutzer verschiedene Regionen der Erde aus unterschiedlichen Perspektiven betrachten.
+* **Verarbeitung geografischer Koordinaten:** Da Satellitendaten üblicherweise in Längen- und Breitengraden bereitgestellt werden, wurde ein Modul zur Umrechnung geografischer Koordinaten entwickelt. Dieses berechnet die entsprechenden Positionen auf der dreidimensionalen Kugeloberfläche und bildet die Grundlage für die spätere Platzierung von Satellitenobjekten.
+* **Darstellung der Atmosphäre:** Zur Verbesserung der visuellen Darstellung wurde eine Atmosphärenschicht implementiert. Diese erzeugt einen leichten Leuchteffekt um die Erde und sorgt für ein realistischeres Erscheinungsbild des Globus.
 
-#### Implementierung des 3D-Globus
-
-Für die Darstellung der Erde wurde ein eigener Globe-Komponent erstellt. Dieser erzeugt eine dreidimensionale Kugel und bindet die entsprechenden Erdtexturen ein. Die Trennung in ein eigenes Modul erleichtert spätere Erweiterungen, beispielsweise das Hinzufügen von Satellitenmarkierungen oder weiteren visuellen Ebenen.
-
-#### Entwicklung der Kamerasteuerung
-
-Um eine intuitive Navigation innerhalb der 3D-Szene zu ermöglichen, wurde eine Kamerasteuerung implementiert. Diese erlaubt das Drehen, Zoomen und Verschieben der Ansicht. Dadurch kann der Benutzer verschiedene Regionen der Erde aus unterschiedlichen Perspektiven betrachten.
-
-#### Verarbeitung geografischer Koordinaten
-
-Da Satellitendaten üblicherweise in Längen- und Breitengraden bereitgestellt werden, wurde ein Modul zur Umrechnung geografischer Koordinaten entwickelt. Dieses berechnet die entsprechenden Positionen auf der dreidimensionalen Kugeloberfläche und bildet die Grundlage für die spätere Platzierung von Satellitenobjekten.
-
-#### Darstellung der Atmosphäre
-
-Zur Verbesserung der visuellen Darstellung wurde eine Atmosphärenschicht implementiert. Diese erzeugt einen leichten Leuchteffekt um die Erde und sorgt für ein realistischeres Erscheinungsbild des Globus.
-
-#### Schlussresultat
-
-So erhielten wir nun das Folgende Resultat für unsere 3D Erdkugel:
 ![picture of our planet](assets/Planet.jpeg)
 
-### 2.4.3 Implementation der API
+### 2.5.3 Implementation der API
+Zur Gewinnung aktueller TLE-Daten (Two-Line Element Sets) wurde ein dediziertes Services-Modul (`satelliteService.js`) entwickelt. Um eine robuste Datenpipeline zu garantieren, wurden parallele Abfragen mit einer Konkurrenzsteuerung implementiert. Dies stellt sicher, dass auch bei potenziellen Netzwerkverzögerungen keine Engpässe entstehen. Die Rohdaten werden bereinigt, Dubletten mittels NORAD-IDs gefiltert und in ein für die Applikation optimiertes Format konvertiert.
 
-### 2.4.4 Integration API & Globus
-
-
-
-
+### 2.5.4 Integration API & Globus
+In diesem Schritt wurden die verarbeiteten Daten mit der Globe-Engine verknüpft. Die Bibliothek `satellite.js` dient dabei als mathematische Basis, um aus den TLE-Sätzen die aktuellen ECI-Koordinaten zu propagieren.
 
 
 
+Die Satelliten werden als `THREE.Sprite` gerendert, wobei Icons und Farben dynamisch anhand des Typs zugewiesen werden. Zudem wurde ein System für Flugbahnspuren implementiert, das die vergangenen Positionen visualisiert. Die Benutzeroberfläche wurde eng mit dem `SatelliteManager` verzahnt, um Funktionen wie Raycasting zur Objekt-Interaktion und eine "Follow-Funktion" für die Kamera zu ermöglichen.
 
-
-
-
-
-
+### 2.5.5 Zwischenfazit der Realisierung
+Die modulare Architektur hat sich als äusserst effektiv erwiesen. Die Trennung von Datenbeschaffung, mathematischer Logik und Rendering ermöglicht eine performante Darstellung von mehreren hundert Objekten in Echtzeit und bildet ein solides Fundament für die anstehende finale Testphase.
