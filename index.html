@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satellite Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="apimanager.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <h1>Satellite Tracker</h1>
+    </header>
+
+    <main class="main">
+        <div class="globe-container">
+            globe container 
+            <div id="app"></div>
+        </div>
+
+        <aside class="control-panel">Right sidebar
+
+            <h2 class="panel-title">
+                Satellite Tracker
+            </h2>
+
+            <div class="section">
+                <h3 class="section-title">
+                    Navigation
+                </h3>
+
+                <input
+                    id="lat"
+                    type="number"
+                    placeholder="Latitude"
+                />
+
+                <input
+                    id="lon"
+                    type="number"
+                    placeholder="Longitude"
+                />
+
+                <button id="goBtn">
+                    Go To Position
+                </button>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">
+                    Search
+                </h3>
+
+                <input
+                    id="satelliteSearch"
+                    type="text"
+                    placeholder="Search satellite..."
+                />
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">
+                    Filters
+                </h3>
+
+                <select id="satelliteFilter">
+                    <option value="all">
+                        All Satellites
+                    </option>
+
+                    <option value="station">
+                        Space Stations
+                    </option>
+
+                    <option value="communication">
+                        Communication
+                    </option>
+
+                    <option value="navigation">
+                        Navigation
+                    </option>
+
+                    <option value="weather">
+                        Weather
+                    </option>
+
+                    <option value="observation">
+                        Earth Observation
+                    </option>
+
+                    <option value="science">
+                        Scientific
+                    </option>
+
+                    <option value="military">
+                        Military
+                    </option>
+                </select>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">
+                    Satellite
+                </h3>
+
+                <button id="followBtn">
+                    Follow Selected Satellite
+                </button>
+
+                <div id="satelliteCount">
+                    Satellites Loaded: 0
+                </div>
+
+                <li id="satelliteList"></li>
+            </div>
+
+            <div id="infoPanel">
+
+            <h2>
+                Satellite Information
+            </h2>
+
+            <div id="infoContent">
+
+                <p>
+                    Select a satellite to view information.
+                </p>
+
+            </div>
+
+        </div>
+
+        </aside>    
+        
+    </main>
+    
+</body>
+</html>
