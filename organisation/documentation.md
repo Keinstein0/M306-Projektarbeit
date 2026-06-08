@@ -1,3 +1,4 @@
+
 # 1. Teil (Obligatorische Kapitel)
 ## 1.1 Aufgabenstellung
 
@@ -26,7 +27,7 @@ Die Anwendung soll als Web -App entwickelt werden.
 ## 1.2 Projektorganisation
 Dieses Projekt ist als übungsdurchlauf für die tatsächliche IPA gedacht und so sind die Projektanforderungen von uns an uns gestellt worden. Unser Betreuer für dieses Projekt ist Herr Colic der BBBaden. Er ist zudem auch unser Hauptexperte. Wir Absolvieren die IPA an der BBBaden sowie via Home Office. 
 
-Unser Projektmanagement basiert auf IPERKA da es uns so Vorgegeben wurde und es auch für dieses Projekt der "Path of least resistance" ist. S
+Unser Projektmanagement basiert auf IPERKA da es uns so Vorgegeben wurde und es auch für dieses Projekt der "Path of least resistance" ist. 
 
 ## 1.3 Deklaration der Vorkenntnisse
 - HTML/CSS: Gute Kenntnisse -> Umsetzung von statischen Web-basierten Projekten.
@@ -203,13 +204,22 @@ Fazit: Das CelesTrak API passt für unseres Projekt am besten wegen eine simpler
 
 ## 2.5 Realisieren
 
-### 2.5.1 Phase 1 (01.06.2026)
+### 2.5.1 Aufsetzen des Projektes
+Zu beginn mussten wir das Projekt ersteinmal erstellen. Hierfür begannen wir damit ein Git Repository zu erstellen um uns die Kollaboration später zu vereinfachen und unsere Dateien sicher aufzubewahren. 
 
-Mit Beginn der Realisierungsphase wurde die technische Grundlage für die Anwendung geschaffen. Das Ziel dieser ersten Phase war die Entwicklung der Kernkomponenten, welche für die spätere Darstellung und Interaktion mit dem Satellitenglobus benötigt werden.
+![picture of our current github](assets/github.png)
 
-#### Aufbau der Globe-Engine
+Von dort aus Clonten wir das Repository auf unsere lokalen computer und begannen erstmals mit dem Erstellen der Dokumentationsdokumente. (Repository wurde schon in der I Phase aufgesetzt). Nun erstellten wir die nötigen Ordner im "implementation" Ordner, welcher wieder in 3 Ordner aufgeteilt wurde.
 
-Als zentrale Komponente wurde die Globe-Engine entwickelt. Sie ist für die Initialisierung der ThreeJS-Szene verantwortlich und verwaltet die wichtigsten Elemente wie Szene, Kamera und Renderer. Durch die Kapselung dieser Funktionen in einem eigenen Modul entsteht eine klare Trennung zwischen der technischen Infrastruktur und den späteren Anwendungsfunktionen.
+der Ordner "css" enthält alle unsere Stylesheets. Der Ordner javascript enthält alle unsere javascript Dateien und "textures" enthält alle notwendigen assets. Zudem gibt es das HTML Dokument index.html in welchem sich, in nur einer Seite, unsere gesamte Struktur befindet.
+
+![our folderstructure](assets/folders.png)
+
+Mit der Ordnerstruktur nun erstellt committeten wir diese wieder auf unser Repository. 
+
+### 2.5.2 Entwicklung der Globe Engine
+
+Als zentrale Komponente wurde die Globe-Engine entwickelt. Sie ist für die Initialisierung der ThreeJS-Szene verantwortlich und verwaltet die wichtigsten Elemente wie Szene, Kamera und Renderer. Durch die Kapselung dieser Funktionen in einem eigenen Modul entsteht eine klare Trennung zwischen der technischen Infrastruktur und den späteren Anwendungsfunktionen. Wir unterteilten deren Entwicklung in einige Segmente.
 
 #### Implementierung des 3D-Globus
 
@@ -227,8 +237,24 @@ Da Satellitendaten üblicherweise in Längen- und Breitengraden bereitgestellt w
 
 Zur Verbesserung der visuellen Darstellung wurde eine Atmosphärenschicht implementiert. Diese erzeugt einen leichten Leuchteffekt um die Erde und sorgt für ein realistischeres Erscheinungsbild des Globus.
 
-#### Aktueller Stand
+#### Schlussresultat
 
-Die grundlegende Architektur der Anwendung wurde erfolgreich umgesetzt. Der 3D-Globus kann dargestellt werden und die wichtigsten Basiskomponenten sind vorhanden. In der nächsten Phase wird die Integration der Satellitendaten sowie deren Visualisierung auf dem Globus umgesetzt.
+So erhielten wir nun das Folgende Resultat für unsere 3D Erdkugel:
+![picture of our planet](assets/Planet.jpeg)
+
+### 2.4.3 Implementation der API
+
+### 2.4.4 Integration API & Globus
+
+
+
+
+
+
+
+
+
+
+
 
 

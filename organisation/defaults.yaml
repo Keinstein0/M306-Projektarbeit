@@ -1,0 +1,25 @@
+# Pandoc Defaults Configuration File
+
+# Input/Output settings
+from: markdown+yaml_metadata_block+raw_attribute
+to: docx
+standalone: true
+
+# Index Configuration
+toc: true
+toc-depth: 3
+
+# Styling & Formatting Template
+reference-doc: reference.docx
+
+# Structural Properties
+number-sections: false
+
+metadata:
+  title: "IPA-Facharbeit"
+  subtitle: "Satellitentracker"
+  author:
+    - "Alexander"
+    - "Vincent"
+    - "Neo"
+    - "Laurentiu"
