@@ -1,12 +1,17 @@
 import * as THREE from 'three';
 
-export function latLonToVector3(lat, lon, radius = 1) {
-    const phi = (90 - lat) * (Math.PI / 180);
-    const theta = (lon + 180) * (Math.PI / 180);
+const EARTH_RADIUS_KM = 6371;
+const EARTH_RENDER_RADIUS = 1;
 
-    const x = -(radius * Math.sin(phi) * Math.cos(theta));
-    const z = radius * Math.sin(phi) * Math.sin(theta);
+export function latLonToVector3(lat, lon, altitudeKm = 0) {
+    const radius = EARTH_RENDER_RADIUS + (altitudeKm / EARTH_RADIUS_KM);
+
+    const phi = THREE.MathUtils.degToRad(90 - lat);
+    const theta = THREE.MathUtils.degToRad(lon);
+
+    const x = radius * Math.sin(phi) * Math.cos(theta);
     const y = radius * Math.cos(phi);
+    const z = radius * Math.sin(phi) * Math.sin(theta);
 
     return new THREE.Vector3(x, y, z);
 }

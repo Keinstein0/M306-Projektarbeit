@@ -1,85 +1,145 @@
 body {
     margin: 0;
-    font-family: system-ui, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: radial-gradient(circle at center, #0b0f1a, #000);
     color: white;
     overflow: hidden;
-}
-
-/* Layout */
-.app-layout {
-    position: relative;
     width: 100vw;
     height: 100vh;
 }
 
-/* Globe container (FULL SCREEN CANVAS AREA) */
+.app-layout {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
 .globe-container {
     position: absolute;
     inset: 0;
+    z-index: 1;
 }
 
-/* Three.js canvas */
 #app {
     width: 100%;
     height: 100%;
 }
 
-/* Control panel (floating) */
-input, button {
+.control-panel, #infoPanel {
     position: absolute;
-    left: 20px;
-    width: 220px;
-
-    padding: 10px 12px;
-    border-radius: 10px;
-
-    border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(20, 25, 40, 0.6);
-    backdrop-filter: blur(10px);
-
-    color: white;
-    outline: none;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-/* Position inputs */
-#lat {
     top: 20px;
+    z-index: 10;
+    background: rgba(15, 22, 36, 0.75);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
 }
 
-#lon {
-    top: 70px;
+.control-panel {
+    left: 20px;
+    width: 280px;
 }
 
-/* Button */
-#goBtn {
-    top: 120px;
+#infoPanel {
+    right: 20px;
+    width: 300px;
+}
+
+.panel-title, h2 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #00ffaa;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 8px;
+}
+
+.section-title {
+    margin: 0 0 8px 0;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-row, .btn-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.input-row input {
+    flex: 1;
+    min-width: 0;
+}
+
+input, select, button {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(30, 40, 60, 0.6);
+    color: white;
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+input:focus, select:focus {
+    border-color: #00ffaa;
+    background: rgba(30, 40, 60, 0.8);
+}
+
+button {
+    background: #0066ff;
+    border: none;
+    font-weight: 600;
     cursor: pointer;
-    background: rgba(80, 140, 255, 0.25);
-    transition: 0.2s ease;
 }
 
-#goBtn:hover {
-    background: rgba(80, 140, 255, 0.45);
+button:hover {
+    background: #2288ff;
     transform: translateY(-1px);
 }
 
-#goBtn:active {
-    transform: translateY(0px);
+#followBtn {
+    background: #00aa66;
+    margin-bottom: 8px;
 }
 
-/* Optional subtle grid glow */
-.globe-container::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
+#followBtn:hover {
+    background: #00cc77;
+}
 
-    background: radial-gradient(
-        circle at center,
-        transparent 40%,
-        rgba(0,0,0,0.6)
-    );
+#satelliteCount {
+    font-size: 0.85rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 4px;
+    font-family: monospace;
+}
+
+#infoContent p {
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 4px;
+}
+
+#infoContent p strong {
+    color: rgba(255, 255, 255, 0.6);
 }

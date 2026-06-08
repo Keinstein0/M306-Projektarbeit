@@ -17,7 +17,7 @@ export function createAtmosphere(radius = 1.02) {
         fragmentShader: `
             varying vec3 vNormal;
             void main() {
-                float intensity = pow(0.6 - dot(vNormal, vec3(0,0,1.0)), 2.0);
+                float intensity = pow(0.6 - dot(vNormal, vec3(0, 0, 1.0)), 2.0);
                 gl_FragColor = vec4(0.4, 0.7, 1.0, 1.0) * intensity;
             }
         `

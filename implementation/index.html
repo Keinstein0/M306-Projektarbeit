@@ -1,25 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Globe</title>
-
+    <title>Satellite Tracker</title>
     <link rel="stylesheet" href="css/styles.css" />
 </head>
-
 <body>
     <div class="app-layout">
         <div class="globe-container">
             <div id="app"></div>
         </div>
-        <input id="lat" type="number" placeholder="Latitude" />
-        <input id="lon" type="number" placeholder="Longitude" />
-        <button id="goBtn">Go</button>
+
+        <div class="control-panel">
+            <h2 class="panel-title">Satellite Tracker</h2>
+
+            <div class="section">
+                <h3 class="section-title">Navigation</h3>
+                <div class="input-row">
+                    <input id="lat" type="number" placeholder="Latitude" step="any" />
+                    <input id="lon" type="number" placeholder="Longitude" step="any" />
+                </div>
+                <button id="goBtn">Go To Position</button>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Search</h3>
+                <input id="satelliteSearch" type="text" placeholder="Search satellite..." />
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Filter Category</h3>
+                <select id="satelliteFilter">
+                    <option value="all">All Groups</option>
+                    <option value="station">Space Stations</option>
+                    <option value="communication">Communication</option>
+                    <option value="navigation">Navigation</option>
+                    <option value="weather">Weather</option>
+                    <option value="observation">Earth Observation</option>
+                    <option value="science">Scientific</option>
+                    <option value="military">Military</option>
+                </select>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Controls</h3>
+                <button id="followBtn">Follow Selected Satellite</button>
+                <div class="btn-row">
+                    <button onclick="window.toggleRotation()">Toggle Spin</button>
+                    <button onclick="window.resetView()">Reset View</button>
+                </div>
+                <div id="satelliteCount">Satellites Loaded: 0</div>
+            </div>
+        </div>
+
+        <div id="infoPanel">
+            <h2>Satellite Information</h2>
+            <div id="infoContent">
+                <p>Select a satellite to view information.</p>
+            </div>
+        </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/satellite.js/4.0.0/satellite.min.js"></script>
     <script type="module" src="javascript/globe.js"></script>
 </body>
-
 </html>
