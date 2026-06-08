@@ -107,18 +107,23 @@ Die IPA wird natürlich nach den gegebenen Kriterien optimiert und gewertet. Dah
 - 7 Die Applikation soll ohne ein Login auskommen
 - 8 Die Applikation soll Web-Basiert sein um sie zugänglicher zu mehr Nutzern zu machen
 
+### 2.2.5 Sicherung der Dateien
+Um unsere Dateien sicher zu verwalten und die Kollaboration im Code zu gewährleisten verwenden wir Git. So sind alle unsere Versionen des Codes sowie alle Versionen der Dokumentationen sicher aufbewahrt. Unser Repository findet sich hier: 
+[github.com/Keinstein0/M306-Projektarbeit](https://github.com/Keinstein0/M306-Projektarbeit)
+
+Unsere Ordnerstruktur enthält die beiden Hauptordner "Organisation" und "Implementation". Im Ordner Organisation findet man die Rohfassungen der Dokumentation sowie die jeweiligen Tabellen für Zeitplan und Arbeitsjournal welche zum Schluss in das Dokument, welches Sie nun lesen übertragen wurde. Im Ordner Implementation findet sich der gesamte Code sauber aufgeteilt.
+
 ## 2.3 Planen
 
 ### 2.3.1 Testkonzept
 Ziel: Die Anwendung soll auf Funktionalität, Stabilität und Benutzerfreundlichkeit getestet werden.
 Funktionstest: Überprüfung der Such-, Filter- und Anzeige-Funktionen.
-API-Test: Kontrolle der Verbindung zur NASA API und korrekte Datenübernahme.
+API-Test: Kontrolle der Verbindung zur API und korrekte Datenübernahme.
 Benutzertest: Prüfung der Benutzeroberfläche und Bedienbarkeit.
 Fehlertest: Überprüfung des Verhaltens bei fehlender Internetverbindung oder API-Fehlern.
 Leistungstest: Kontrolle, ob mindestens 10 Satelliten gleichzeitig dargestellt werden können.
 
-//??//
-
+Was wir nicht testen ist die Optimierung für ein Deployment auf einem tatsächlichen Server, da für dies schon genug Frameworks vorhanden sind. Insbesondere da wir Native HTML/CSS/JS Schreiben soll ein Deployment keine grosse challenge sein.
 
 ### 2.3.2 Testfallspezifikation
 Wir erstellten Testfälle um unser Projekt effektiv testen zu können und um herauszufinden wenn wir die von uns gesetzten Ziele erreicht haben. Hierfür erstellten wir 6 Passende Testfälle und sie beziehen sich direkt auf unsere Anforderungen
@@ -139,9 +144,9 @@ Obwohl unsere Applikation in JavaScript läuft entschieden wir uns unsere Applik
 ![uml Diagramm](assets/uml.png)
 
 ### 2.3.4
-Die Interaktion zwischen der API und dem Fertigen UI ist eine der wichtigsten Anteile. Daher entschieden wir uns die Daten nach einer Art "Pipeline" zu gruppieren in der sie von der API unterschiedliche Komponenten durchläuft bis die Daten am Schluss angezeigt werden können.
+Die Interaktionen arbeiten wie in folgendem UML Interaktionsdiagramm dokumentiert. Der Nutzer greift via das UI auf das UI der Webseite zu. Sobald er eine Anfrage macht um neue Satelliten zu sehen, wird eine HTTP Request an die externe API gemacht, welche uns dann im JSON format eine Ungefilterte Antwort gibt. Diese wird dann von einem Verarbeiter im Hintergrund in eine für uns Nutzbare (gefiltert und neuverpackt) Form gebracht. So kann der Globus im UI dann schliesslich die fertigen Satelliten anzeigen.
 
-![alt text](assets/interaction.png)
+![interaction](assets/interaction2.png)
 
 ## 2.4 Entscheiden
 
@@ -149,13 +154,13 @@ Wir mussten uns nur noch entscheiden welche API wir genau verwenden wollten. Da 
 
 Hierfür wollten wir erstmals unsere Prioritäten setzen, dafür verwendeten wir eine Präferenzmatrix.
 
-A ->	Entwicklungsaufwand
+A -> Entwicklungsaufwand
 
-B ->	Performance
+B -> Performance
 
-C ->	Genauigkeit der Satellitenposition
+C -> Genauigkeit der Satellitenposition
 
-D ->	Erweiterbarkeit
+D -> Erweiterbarkeit
 
 
 |     A vs B    |     A    |
@@ -225,3 +230,5 @@ Zur Verbesserung der visuellen Darstellung wurde eine Atmosphärenschicht implem
 #### Aktueller Stand
 
 Die grundlegende Architektur der Anwendung wurde erfolgreich umgesetzt. Der 3D-Globus kann dargestellt werden und die wichtigsten Basiskomponenten sind vorhanden. In der nächsten Phase wird die Integration der Satellitendaten sowie deren Visualisierung auf dem Globus umgesetzt.
+
+
