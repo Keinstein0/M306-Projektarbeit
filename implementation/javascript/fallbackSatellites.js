@@ -1,0 +1,17 @@
+// fallbackSatellites.js
+export const FALLBACK_DATA = [
+    {
+        OBJECT_NAME: "ISS (ZARYA)",
+        NORAD_CAT_ID: "25544",
+        TLE_LINE1: "1 25544U 98067A   26159.57659424  .00014291  00000-0  25363-3 0  9993",
+        TLE_LINE2: "2 25544  51.6416 193.3512 0004811  19.5398  74.2087 15.49479365571618",
+        type: "station"
+    },
+    {
+        OBJECT_NAME: "STARLINK-31652",
+        NORAD_CAT_ID: "58123",
+        TLE_LINE1: "1 58123U 23161A   26159.21456123  .00001245  00000-0  12453-4 0  9991",
+        TLE_LINE2: "2 58123  53.0512 112.4512 0001245  84.2154 275.9124 15.02451623124512",
+        type: "communication"
+    }
+];

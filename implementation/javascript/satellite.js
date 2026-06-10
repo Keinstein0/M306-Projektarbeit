@@ -8,104 +8,116 @@ const textureLoader = new THREE.TextureLoader();
 export class Satellite {
     constructor(data) {
         this.data = data;
-        const iconTexture = TYPE_ICONS[data.type] ?? TYPE_ICONS.station;
 
+        if (!data?.tle1 || !data?.tle2) {
+            throw new Error("Invalid TLE data");
+        }
+
+        // Initialize the satellite record structure using the satellite.js package
+        try {
+            this.satrec = satellitePkg.twoline2satrec(data.tle1, data.tle2);
+        } catch (e) {
+            console.error("Failed to parse TLE strings into satrec:", e);
+            throw e;
+        }
+
+        // Initialize an empty coordinate object so the info panel never reads 'undefined'
+        this.position = {
+            latitude: 0,
+            longitude: 0,
+            altitude: 0
+        };
+
+        const iconTexture = TYPE_ICONS[data.type] ?? TYPE_ICONS.station;
         const spriteTexture = textureLoader.load(iconTexture);
 
-        const spriteMaterial = new THREE.SpriteMaterial({
-            map: spriteTexture,
-            transparent: true,
-            depthTest: true,
-            depthWrite: false
-        });
+        this.sprite = new THREE.Sprite(
+            new THREE.SpriteMaterial({
+                map: spriteTexture,
+                transparent: true,
+                depthTest: true,
+                depthWrite: false
+            })
+        );
 
-        this.sprite = new THREE.Sprite(spriteMaterial);
         this.sprite.scale.set(0.04, 0.04, 1);
         this.sprite.userData.satellite = this;
 
+        // Also create an empty tracking mesh reference if globeEngine expects it for raycasting/position tracking
+        this.mesh = this.sprite; 
+
         const trailColor = TYPE_COLORS[data.type] ?? 0x00ffff;
 
-        const trailMaterial = new THREE.LineBasicMaterial({
-            color: trailColor,
-            transparent: true,
-            opacity: 0.35,
-            blending: THREE.AdditiveBlending,
-            depthWrite: false
-        });
-
         this.trailGeometry = new THREE.BufferGeometry();
-        this.trailLine = new THREE.Line(this.trailGeometry, trailMaterial);
-
-        this.satrec = satellitePkg.twoline2satrec(
-            this.data.tle1,
-            this.data.tle2
+        this.trailLine = new THREE.Line(
+            this.trailGeometry,
+            new THREE.LineBasicMaterial({
+                color: trailColor,
+                transparent: true,
+                opacity: 0.35,
+                blending: THREE.AdditiveBlending
+            })
         );
 
+        // Compute the initial positional frames immediately upon creation
         this.updatePosition();
-        this.generateTrail();
     }
 
     updatePosition() {
         const now = new Date();
 
-        const state = satellitePkg.propagate(this.satrec, now);
-        if (!state.position) return;
-
-        const gmst = satellitePkg.gstime(now);
-
-        const geodetic = satellitePkg.eciToGeodetic(state.position, gmst);
-
-        const latitude = satellitePkg.degreesLat(geodetic.latitude);
-        const longitude = satellitePkg.degreesLong(geodetic.longitude);
-        const altitude = geodetic.height;
-
-        const worldPos = latLonToVector3(latitude, longitude, altitude);
-
-        this.sprite.position.copy(worldPos);
-    }
-
-    generateTrail() {
         try {
-            const now = new Date();
+            const state = satellitePkg.propagate(this.satrec, now);
+            if (!state?.position) return;
 
-            const trailPoints = [];
+            const gmst = satellitePkg.gstime(now);
+            const geo = satellitePkg.eciToGeodetic(state.position, gmst);
 
-            const trailDurationMinutes = 10;
-            const trailSegments = 25;
+            // Compute exact degrees
+            this.position.latitude = satellitePkg.degreesLat(geo.latitude);
+            this.position.longitude = satellitePkg.degreesLong(geo.longitude);
+            this.position.altitude = geo.height; // in km
 
-            for (let i = 0; i <= trailSegments; i++) {
-
-                const pastTime = new Date(
-                    now.getTime() -
-                    (i * (trailDurationMinutes / trailSegments)) * 60000
-                );
-
-                const state = satellitePkg.propagate(this.satrec, pastTime);
-                if (!state.position) continue;
-
-                const gmst = satellitePkg.gstime(pastTime);
-
-                const geodetic = satellitePkg.eciToGeodetic(state.position, gmst);
-
-                const latitude = satellitePkg.degreesLat(geodetic.latitude);
-                const longitude = satellitePkg.degreesLong(geodetic.longitude);
-                const altitude = geodetic.height;
-
-                trailPoints.push(
-                    latLonToVector3(latitude, longitude, altitude)
-                );
+            // Translate geographic space coordinates to Three.js world spaces vector coordinates
+            const worldPos = latLonToVector3(this.position.latitude, this.position.longitude, this.position.altitude);
+            
+            if (worldPos && isFinite(worldPos.x) && isFinite(worldPos.y) && isFinite(worldPos.z)) {
+                this.sprite.position.copy(worldPos);
             }
 
-            trailPoints.reverse();
+            // Dynamically rebuild trail path geometries
+            const points = [];
+            const duration = 10; // minutes
+            const segments = 25;
 
-            this.trailGeometry.dispose();
-            this.trailGeometry = new THREE.BufferGeometry();
-            this.trailGeometry.setFromPoints(trailPoints);
+            for (let i = 0; i <= segments; i++) {
+                const t = new Date(now.getTime() - (i * (duration / segments)) * 60000);
+                const historicState = satellitePkg.propagate(this.satrec, t);
+                if (!historicState?.position) continue;
 
-            this.trailLine.geometry = this.trailGeometry;
+                const historicGmst = satellitePkg.gstime(t);
+                const historicGeo = satellitePkg.eciToGeodetic(historicState.position, historicGmst);
+
+                const lat = satellitePkg.degreesLat(historicGeo.latitude);
+                const lon = satellitePkg.degreesLong(historicGeo.longitude);
+                const alt = historicGeo.height;
+
+                if (Number.isFinite(lat) && Number.isFinite(lon) && Number.isFinite(alt)) {
+                    const p = latLonToVector3(lat, lon, alt);
+                    if (p && isFinite(p.x) && isFinite(p.y) && isFinite(p.z)) {
+                        points.push(p);
+                    }
+                }
+            }
+
+            points.reverse();
+
+            if (points.length > 0) {
+                this.trailGeometry.setFromPoints(points);
+            }
 
         } catch (err) {
-            console.error("Trail generation error:", err);
+            console.error("Error computing position runtime vectors:", err);
         }
     }
 }

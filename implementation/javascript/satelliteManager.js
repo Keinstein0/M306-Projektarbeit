@@ -9,26 +9,46 @@ export class SatelliteManager {
     }
 
     load(data) {
-        if (!data || !Array.isArray(data)) {
+        if (!Array.isArray(data)) {
             console.error("Satellite data is invalid or missing.");
             return;
         }
+
         this.clear();
+
         data.forEach(item => {
-            const satellite = new Satellite(item);
-            if (this.earthMesh) {
-                this.earthMesh.add(satellite.mesh);
-                this.earthMesh.add(satellite.trail);
-                this.satellites.push(satellite);
+            if (!item?.tle1 || !item?.tle2) return;
+
+            let satellite;
+            try {
+                satellite = new Satellite(item);
+            } catch (err) {
+                console.warn("Satellite creation failed:", item, err);
+                return;
             }
+
+            if (!satellite?.sprite || !satellite?.trailLine) return;
+
+            this.earthMesh.add(satellite.sprite);
+            this.earthMesh.add(satellite.trailLine);
+            this.satellites.push(satellite);
         });
+
         this.applyFilters();
     }
 
     clear() {
         this.satellites.forEach(satellite => {
-            this.earthMesh.remove(satellite.mesh);
-            this.earthMesh.remove(satellite.trail);
+            if (satellite.sprite) {
+                this.earthMesh.remove(satellite.sprite);
+                satellite.sprite.material?.map?.dispose?.();
+                satellite.sprite.material?.dispose?.();
+            }
+            if (satellite.trailLine) {
+                this.earthMesh.remove(satellite.trailLine);
+                satellite.trailLine.geometry?.dispose?.();
+                satellite.trailLine.material?.dispose?.();
+            }
         });
         this.satellites = [];
     }
@@ -45,24 +65,28 @@ export class SatelliteManager {
 
     applyFilters() {
         this.satellites.forEach(satellite => {
-            const matchesSearch = satellite.data.name.toLowerCase().includes(this.searchQuery);
-            const matchesFilter = this.activeFilter === 'all' || satellite.data.type === this.activeFilter;
+            const matchesSearch =
+                satellite.data.name.toLowerCase().includes(this.searchQuery);
+
+            const matchesFilter =
+                this.activeFilter === 'all' ||
+                satellite.data.type === this.activeFilter;
+
             const visible = matchesSearch && matchesFilter;
 
-            satellite.mesh.visible = visible;
-            satellite.trail.visible = visible;
+            satellite.sprite.visible = visible;
+            satellite.trailLine.visible = visible;
         });
     }
 
     update() {
         this.satellites.forEach(satellite => {
-            if (satellite.mesh && satellite.mesh.visible) {
-                satellite.updatePosition();
-            }
+            // Decoupled update tracking so positions are initialized background-wide
+            satellite.updatePosition();
         });
     }
 
     getVisibleCount() {
-        return this.satellites.filter(satellite => satellite.mesh.visible).length;
+        return this.satellites.filter(s => s.sprite?.visible).length;
     }
 }

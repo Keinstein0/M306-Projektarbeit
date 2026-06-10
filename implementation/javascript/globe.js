@@ -1,5 +1,7 @@
 import { GlobeEngine } from './globeEngine.js';
-import { fetchActiveSatellites } from './satelliteService.js';
+import { SatelliteService } from './SatelliteService.js';
+import { SATELLITE_GROUPS } from './satelliteGroups.js';
+import { FALLBACK_DATA } from './fallbackSatellites.js'; 
 
 const container = document.getElementById('app');
 const engine = new GlobeEngine(container);
@@ -14,13 +16,44 @@ function updateSatelliteCount() {
 
 async function init() {
     try {
-        const satellites = await fetchActiveSatellites();
-        engine.loadSatellites(satellites);
+        const service = new SatelliteService({
+            ttlMinutes: 30,
+            concurrency: 1
+        });
+
+        service.cleanupCache();
+
+        let satellites = [];
+        
+        try {
+            console.log("📡 Attempting live satellite sync with CelesTrak API proxy...");
+            satellites = await service.fetchActiveSatellites(SATELLITE_GROUPS);
+        } catch (apiError) {
+            console.warn(
+                "⚠️ CelesTrak API connection dropped or timed out. Initiating local emergency fallback configuration.", 
+                apiError
+            );
+            
+            // Map the offline fallback array directly matching the structural expectations of the Satellite constructor
+            satellites = FALLBACK_DATA.map(sat => ({
+                name: sat.OBJECT_NAME,
+                noradId: sat.NORAD_CAT_ID,
+                tle1: sat.TLE_LINE1,
+                tle2: sat.TLE_LINE2,
+                type: sat.type ?? "station" 
+            }));
+        }
+
+        // 🚀 FIXED: Directly invoke the satelliteManager's load routine to 
+        // instantiate custom Satellite objects and register Three.js rendering meshes.
+        engine.satelliteManager.load(satellites);
         updateSatelliteCount();
-    } catch (error) {
-        console.error('Satellite loading failed', error);
+
+    } catch (criticalError) {
+        console.error('❌ Critical error setting up scene layout engine context:', criticalError);
+
         const countEl = document.getElementById('satelliteCount');
-        if (countEl) countEl.textContent = 'Failed to load satellites';
+        if (countEl) countEl.textContent = 'Fatal error initializing engine';
     }
 }
 

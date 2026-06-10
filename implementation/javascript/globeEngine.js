@@ -83,7 +83,9 @@ export class GlobeEngine {
         this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
         this.raycaster.setFromCamera(this.mouse, this.camera);
-        const sprites = this.satelliteManager.satellites.filter(s => s.mesh.visible).map(s => s.mesh);
+        const sprites = this.satelliteManager.satellites
+            .filter(s => s?.sprite && s.sprite.visible)
+            .map(s => s.sprite);
         const intersections = this.raycaster.intersectObjects(sprites);
 
         if (intersections.length === 0) return;

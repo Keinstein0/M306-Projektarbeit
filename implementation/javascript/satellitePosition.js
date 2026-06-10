@@ -1,3 +1,5 @@
+import * as satellite from 'satellite.js';
+
 export function calculatePosition(tle1, tle2) {
     try {
         const satrec = satellite.twoline2satrec(tle1, tle2);
