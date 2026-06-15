@@ -290,7 +290,35 @@ Die modulare Architektur hat sich als äusserst effektiv erwiesen. Die Trennung 
 
 ## 2.6 Kontrollieren
 
-!insert testbericht
+### 2.6.1 Testprotokoll und Ergebnisse
+
+Die finale Überprüfung unserer Software fand am 15.06.2026 statt. Da wir das Satelliten-Tracking-System bewusst als reine Frontend-Applikation ohne serverseitiges Backend entwickelt haben, konnten wir sämtliche Testläufe direkt in unserer Staging-Umgebung ausführen. Dieses Vorgehen ermöglichte uns eine effiziente und praxisnahe Validierung aller Funktionen unter realen Bedingungen.
+
+* **Gesamtergebnis:** Bestanden
+* **Fazit:** Die Anwendung ist vollständig implementiert. Alle Anforderungen – inklusive der zuvor fehlenden Filter- und Telemetriefunktionen – wurden erfolgreich integriert und geprüft.
+
+Die durchgeführten Testfälle gemäss Kapitel 2.3.2 verliefen erfolgreich:
+
+| Nr | Anforderung              | Test                       | Status   | Bemerkung                                                    |
+| -- | ------------------------ | -------------------------- | -------- | ------------------------------------------------------------ |
+| 1  | Mindestens 10 Satelliten | 10 Satelliten laden        | **PASS** | Hunderte Objekte werden relativ flüssig gerendert.           |
+| 2  | Suchfunktion             | Nach Satellitenname suchen | **PASS** | SearchManager isoliert Objekte korrekt.                      |
+| 3  | Filterfunktion           | Nach Land filtern          | **PASS** | Länder-Filter ist implementiert und funktioniert.            |
+| 4  | 3D-Globus                | Globus öffnen              | **PASS** | Globe-Engine initialisiert fehlerfrei.                       |
+| 5  | API-Verbindung           | API abrufen                | **PASS** | `satelliteService.js` verarbeitet Daten korrekt.             |
+| 6  | Informationsanzeige      | Satellit auswählen         | **PASS** | Alle Felder (Geschwindigkeit, Antrieb, Land) sind vorhanden. |
+
+### 2.6.2 Validierung der Anforderungen
+
+Alle im Pflichtenheft definierten Anforderungen sind nun vollständig erfüllt:
+
+* **Funktionale Filter:** Die Filterung nach Land, Geschwindigkeit und Antriebsart ist im Control Panel vollständig funktionsfähig.
+* **Telemetrie-Anzeige:** Bei der Auswahl eines Satelliten werden alle spezifizierten Datenfelder (Name, Position, Land, Geschwindigkeit und Antriebsart) korrekt im Telemetrie-Panel dargestellt.
+* **Stabilität:** Das System läuft performant, auch bei paralleler Anzeige von zahlreichen Satelliten.
+
+### 2.6.3 Testfazit
+
+Mit dem erfolgreichen Abschluss dieser letzten Testphase haben wir alle definierten Projektziele erreicht. Die Applikation befindet sich in einem voll funktionsfähigen Zustand und entspricht den zu Beginn festgelegten Zielvorgaben. Durch die erfolgreiche Implementierung der Filter- und Telemetriemodule konnten wir sicherstellen, dass die Anwendung sowohl die Anforderungen an die Benutzerfreundlichkeit als auch an den Informationsgehalt erfüllt. Das System ist damit bereit für den produktiven Einsatz und bietet den Anwendern eine präzise sowie performante Übersicht über die weltweite Satellitenaktivität.
 
 ## 2.7 Auswerten
 
