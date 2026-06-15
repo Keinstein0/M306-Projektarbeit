@@ -100,21 +100,21 @@ Diese Dokumentation ist stark von der Beispieldokumentation auf Moodle inspirier
 ## 2.1 Kurzfassung des IPA Berichts
 
 ### Ausgangssituation:
-Zurzeit können Satelliten nur von Auge am Nachthimmel oder über indirekte Tabellen/JSON files gefunden werden. Um einen sauberen und schön aussehenden überblick über diese zu erhalten wurde die Idee entwickelt, eine Web-Applikation zu entwickeln welche anhand eines 3D Globus die Position der Satelliten visualisiert. 
+Zurzeit können Satelliten nur mit blossem Auge am Nachthimmel oder über indirekte Tabellen/JSON-Files gefunden werden. Um einen sauberen und schön aussehenden Überblick über diese zu erhalten, wurde die Idee entwickelt, eine Web-Applikation zu entwickeln, welche anhand eines 3D-Globus die Position der Satelliten visualisiert.
 
 ### Umsetzung
-Für die Umsetzung entschieden wir uns für "plain" HTML/CSS/JS da es uns allen Bekannt ist. Für das rendern von 3D Objekten entschieden wir uns für ThreeJS da es unsere Anforderungen an das rendering von 3D Objekten perfekt erfüllt. Die Applikation wird aus einem Docker Container aus laufen so dass die Software modular deployed werden kann. 
+Für die Umsetzung entschieden wir uns für "plain" HTML/CSS/JS, da es uns allen bekannt ist. Für das Rendern von 3D-Objekten entschieden wir uns für Three.js, da es unsere Anforderungen an das Rendering von 3D-Objekten perfekt erfüllt. Die Applikation wird aus einem Docker-Container aus laufen, sodass die Software modulär im Betrieb genommen werden kann.
 
 ### Ergebnis
-Zum Schluss können Nutzer auf die Web-Page ohne Login zugreifen. Auf der Landing-Page sieht man ersteinmals den Globus mit einigen Beispielsatelliten auf ihrem Orbit. Mit einem Filtertool kann man dann Satelliten ein/ausblenden und sich über einen Click auf den Satellit informieren. 
+Zum Schluss können Nutzer auf die Web-Page ohne Login zugreifen. Auf der Landing-Page sieht man erstmals den Globus mit einigen Beispielsatelliten in ihrem Orbit. Mit einem Filtertool kann man dann Satelliten ein- und ausblenden und sich über einen Klick auf den Satelliten informieren.
 
 ## 2.2 Informieren
 ### 2.2.1 REST API
-Für die Informationsbeschaffung der Webseite verwenden wir eine REST API. Diese muss die passenden Informationen in passender form liefern. Hierfür haben wir einige Ansätze für passende APIs, müssen uns jedoch noch für eine passende entscheiden. Am besten könnte diese API auch schon das Filtern übernehmen
+Für die Informationsbeschaffung der Webseite verwenden wir eine REST-API. Diese muss die passenden Informationen in passender Form liefern. Hierfür haben wir einige Ansätze für passende APIs, müssen uns jedoch noch für eine passende entscheiden. Am besten könnte diese API auch schon das Filtern übernehmen.
 
 ### 2.2.2 Design der Seite
-Für das Design der Seite wollen wir ein 3D orientiertes dynamisches Design. Wichtig ist jedoch auch dass bei einem solchen Design die Webseite Optimiert bleibt und nicht Lagt da dies die Nutzererfahrung signifikant schädigen würde. 
-Für dies werden wir uns auf die Optimierung der Library stützen so dass alle Objekte schnell und effektiv dargestellt werden können. Falls dies nicht der Fall ist müssen wir an der menge von 3D Objekten sparen oder einen weg finden die Datenmenge zu Reduzieren.
+Für das Design der Seite wollen wir ein 3D-orientiertes, dynamisches Design. Wichtig ist jedoch auch, dass bei einem solchen Design die Webseite optimiert bleibt und nicht träge ist, da dies die Nutzererfahrung signifikant schädigen würde.  
+Für dies werden wir uns auf die Optimierung der Library stützen, sodass alle Objekte schnell und effektiv dargestellt werden können. Falls dies nicht der Fall ist, müssen wir an der Menge von 3D-Objekten sparen oder einen Weg finden, die Datenmenge zu reduzieren.
 
 ### 2.2.3 User Experience
 Zur Sicherstellung einer guten Nutzererfahrung wird die Seite nach den Kriterien der ISO 9241-110 umgesetzt.
