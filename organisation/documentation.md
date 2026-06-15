@@ -43,12 +43,58 @@ Diese Dokumentation ist stark von der Beispieldokumentation auf Moodle inspirier
 ...
 
 ## 1.6 Zeitplan
-![zeitplan](assets/zeitplan.png)
-*todo ersetzen mit aktuellster version*
+![(unser Zeitplan)](assets/zeitplan.png)
 
 
 ## 1.7 Arbeitsjournal
-*todo insert von arbeitsjournal*
+
+| Datum | 04.05.2026 | 11.05.2026 | 18.05.2026 | 01.06.2026 | 08.06.2026 | 15.06.2026 |
+|:---|:---|:---|:---|:---|:---|:---|
+| **Neo** | | | | | | |
+| **Geplante Tätigkeiten** | | Arbeitsvorlage erstellen | 7708 Entscheiden | JS API parses für CelesTrak | JS für Api fertigmachen | Fertigmachen App |
+| **Erfolge** | | Erstellt und Tag 1 für alle eingetragen | Nutzwertanalyse und Präferenzmatrix gemacht, ergebnis war tatsächlich das beste | JS basisprogramm existiert, API daten können als sauberes JSON ausgegeben werden und sortiert werden. | JS funktioniert | Code zusammengetan |
+| **Misserfolge** | | Excel ist nervig, und für dieser Auftrag würde es meiner Meinung nach mehr Sinn ergeben, die Arbeitsjournale individuell zu machen | Andere hat Doku zusammengestellt, lag weniger gut in der Zeit | Ich war ein bisschen rusty in JS, was dazu führte dass ich weniger schnell bugs finden konnte. | War leicht zu spät mit abgabe, weil ich dachte dass der Code nicht richtig war | Heute arbeiten, da hinter zeitplan |
+| **Probleme** | | Keine | Projektantrag stimmt nicht überein mit neues Plan | Keine Nennenswerte | CelesTrak verbannt alle, die mehr als gefühlt 1 Request pro 2 Stunden machen, wodurch mein Code nicht funktionierte/untestbar war | Git |
+| **Hilfestellung** | | Keine Hilfe notwendig | keine | ChatGPT, W3Schools JS | ChatGPT | ChatGPT |
+| **Überzeiten** | | Kein Überzeit (die Aufträge von heute waren sehr kurz) | keine | 1 Stunde (Arbeit war nicht definiert am Anfang) | 15 Minuten | Keine |
+| **Ungeplante Tätigkeiten** | | Keine | Arbeitsjournal für andere ausfüllen | keine | Keine | Keine |
+| **Reflexion** | | Alles war grundsätzlich ok, Wir hätten heute aber besser kommunizieren können, mit der Auftragsverteilung | wir sollten zuerst herausfinden, was von was abhängig ist, oder wie man es so macht dass wir besser parallel arbeiten können | Alles ok, ich kann aber schon vorhersehen dass es eventuell Probleme geben wird mit Api parser/satellite orbit renderer und das 3d frontend | Es war heute nicht so optimal, es gab auch sehr lange Antwortzeiten über Whatsapp, und ich habe zu lange gebraucht wegen JS, wodurch Laurentieu auch warten müsste. | Alles funktionierte grundsätzlich und wir wurden einigermassen fertig, ist aber schade dass wir heute noch code fertig machen mussten |
+
+| Datum | 04.05.2026 | 11.05.2026 | 18.05.2026 | 01.06.2026 | 08.06.2026 | 15.06.2026 |
+|:---|:---|:---|:---|:---|:---|:---|
+| **Alex** | | | | | | |
+| **Geplante Tätigkeiten** | | Mindmap erstellen | Github repo erstellen, master dokumentation erstellen | Hilfe bei programmier arbeit | Arbeit an Dokumentation | Arbeit an Dokumentation |
+| **Erfolge** | | Mindmap erstellt | Repo und dokument erstellt | Beim programmieren geholfen | Compiler .md -> .docx | Dokumentation fertig |
+| **Misserfolge** | | Keine | | Keine | Compiler brauchte lange | Keine |
+| **Probleme** | | Draw.io ist sehr nervig | Doku war von anderen abhängig da ihres Zeug reinmusste | Evtl. nicht in der mitte des Projekts die technologie wechseln | Zeitstress (wir sind hinter zeitplan) | Zeitstress |
+| **Hilfestellung** | | Keine | keine | Dokumentation Threejs | Google Gemini | Google Gemini, Claude, r/excel |
+| **Überzeiten** | | Keine | keine | Keine | Keine | Keine |
+| **Ungeplante Tätigkeiten** | | Keine | keine | Keine | Compiler für .md schreiben | Keine |
+| **Reflexion** | | Heute war sehr entspannend. Ich hatte meine Arbeit früh fertig | Heute war es am Anfang nicht ganz klar was wir machen müssten, und wir waren verwirrt wegen die Reihenfolge der Aufträge (7707 zuerst, dann 7707) aber nach gute kommunikation ist alles gelungen | Ich konnte heute einiges über 3js lernen und es war sehr interessant | Heute war es gegen anfang recht langweilig jedoch hatte ich sehr viel spass mit dem Compiler zu word | Heute musste ich nochmals unter ein wenig zeitdruck die Dokumentation irgendwie fertigbekommen, was recht stressig war |
+
+| Datum | 04.05.2026 | 11.05.2026 | 18.05.2026 | 01.06.2026 | 08.06.2026 | 15.06.2026 |
+|:---|:---|:---|:---|:---|:---|:---|
+| **Laurentiu** | | | | | | |
+| **Geplante Tätigkeiten** | | Managen der Auftragsverteilung und heutige Planung (vordass Zeitplan erstellt wurde) | 7707 Planen | UI design | HTML integration mit Globe und Control Panel (und JS von Neo) | |
+| **Erfolge** | | Gruppe erfolgreich organisiert und Aufträge Kompiliert/abgegeben | 7707 erfolgreich gemacht | HTML CSS mockup vom UI | Control Panel erstellt | Code fertig |
+| **Misserfolge** | | Keine | Keine | Keine | integration nicht fertig | Keine |
+| **Probleme** | | Keine | Keine | Problem bei Designänderung, Wireframe aus Draw.io zu SVG ist nervig zu editen | Neo's hatte ein problem | Keine |
+| **Hilfestellung** | | Keine | Beim Autrag von Teamkollegen nach eine Meinung | Claude | ChatGpt | ChatGpt |
+| **Überzeiten** | | Keine | Keine | Keine | Paar Minuten Wegen Arbeitsjournal (müsste darauf warten dass alle es ausgefüllt haben bevor ich pulle) | Keine |
+| **Ungeplante Tätigkeiten** | | Keine, ich habe alles perfekt geplannt. | Keine | HTML skelett für Vincent erstellen | | Keine |
+| **Reflexion** | | Heute war sehr positiv. Man Schafft alles, was man schaffen will! | Am Anfang wusste ich nicht welche Methoden etc ich anwenden soll. Aber danach konnte ich mit Hilfe mich entscheiden | Heute war sehr praktisch da wir alle im gleichen Zimmer waren und reden konnten und so | Heute war gut, der Zeitplan war für mehr sehr entspannend | |
+
+| Datum | 04.05.2026 | 11.05.2026 | 18.05.2026 | 01.06.2026 | 08.06.2026 | 15.06.2026 |
+|:---|:---|:---|:---|:---|:---|:---|
+| **Vincent** | | | | | | |
+| **Geplante Tätigkeiten** | | Zeitplan erstellen für die nächsten Wochen bis 22.06.2026 mithilfe der Excel Vorlage | 7709 Realisieren | Start an Projekt | Implementation von Satellitenlogik mit CelesTrak | Code fertigmachen |
+| **Erfolge** | | Zeitplan vollständig erstellt | Weitere Überlegungen zur Umsetzung angestellt und Teammitglieder bei der Arbeit unterstützt | Globus implementiert | Erfolgreiche | Projekt läuft |
+| **Misserfolge** | | Verzögerung wegen Excel problemen | konnte nicht alles machen weil ich Infos von anderen benötigt habe | Globus implementieren dauerte ewig | Mehrere IP-Bans (kontraproduktiv) | Zeit schlecht eingeteilt |
+| **Probleme** | | Excel hat beim speicher random Spalten gelöscht | fehlende Informationen | Koordinatensystem implementieren | IP-Bans, CORS-Blocks, Globus lagt stark | immernoch IP-bans |
+| **Hilfestellung** | | Keine | keine | Claude | KI | Claude |
+| **Überzeiten** | | Keine | keine | Keine | 30min | Keine |
+| **Ungeplante Tätigkeiten** | | Nochmals Vorlage machen wegen Excel Fehler | keine | Keine | Anpassung von requestlogik und implementation von caching um IP-Ban zu verhindern | Keine |
+| **Reflexion** | | Heute war am Anfang ein bisschen unorganisiert weil noch nicht alle Kontakt hatten und zuhause waren, aber ziemlich schnell danach ist die Organisation gelungen | Die Kommunikation während der Ganzen Phase war leider nicht allzu gut. Es war deshalb nicht komplett klar was jeder machen sollte. Auch das kaputtgehen meiner SSD war für die Produktivität nicht förderlich. Die Aufträge konnten aber schlussendlich grösstenteils gut gelöst werden sodass wir nun in die Realisierung übergehen können. | Heute ging es organisationsmässig viel besser, da wir alle vor ort waren | Ich bin grundsätzlich gut voran gekommen und bin auch zufrieden mit dem aktuellen Produkt. Leider lagt die Website im Moment stark. Ausserdem hatte ich vergessen am Ende den Code und die aktualisierten Dateien zu pushen. | Ich konnte heute den Code fertigmachen und dann auch noch bei der dokumentation fertigarbeiten. Wir hatten ein leichtes chaos mit git aber es funktionierte eigentlich ok |
 
 # 2. Teil (Projekt Dokumentation)
 ## 2.1 Kurzfassung des IPA Berichts
@@ -138,13 +184,13 @@ Wir erstellten Testfälle um unser Projekt effektiv testen zu können und um her
 | 5  | API-Verbindung                    | API abrufen                |     Daten werden erfolgreich geladen                                          |
 | 6  | Informationsanzeige               | Satellit auswählen         |     Name, Position, Land, Geschwindigkeit und Antriebsart werden angezeigt    |
 
-### 2.3.3
+### 2.3.3 Klassendiagramm
 
 Obwohl unsere Applikation in JavaScript läuft entschieden wir uns unsere Applikation nach den Grundsätzen der Objekt Orientierten Programmierung zu Gruppieren. Mit der grossen Datenmenge mit der wir arbeiten ist das eine Notwendigkeit. 
 
-![uml Diagramm](assets/uml.png)
+![(UML Diagramm unseres Code)](assets/uml.png)
 
-### 2.3.4
+### 2.3.4 Interaktionsdiagramm
 Die Interaktionen arbeiten wie in folgendem UML Interaktionsdiagramm dokumentiert. Der Nutzer greift via das UI auf das UI der Webseite zu. Sobald er eine Anfrage macht um neue Satelliten zu sehen, wird eine HTTP Request an die externe API gemacht, welche uns dann im JSON format eine Ungefilterte Antwort gibt. Diese wird dann von einem Verarbeiter im Hintergrund in eine für uns Nutzbare (gefiltert und neuverpackt) Form gebracht. So kann der Globus im UI dann schliesslich die fertigen Satelliten anzeigen.
 
 ![interaction](assets/interaction2.png)
@@ -207,7 +253,7 @@ Fazit: Das CelesTrak API passt für unseres Projekt am besten wegen eine simpler
 ### 2.5.1 Aufsetzen des Projektes
 Zu Beginn mussten wir das Projekt erst einmal erstellen. Hierfür begannen wir damit, ein Git Repository zu erstellen, um uns die Kollaboration später zu vereinfachen und unsere Dateien sicher aufzubewahren. 
 
-![picture of our current github](assets/github.png)
+![(Unser aktuelles GitHub)](assets/github.png)
 
 Von dort aus clonten wir das Repository auf unsere lokalen Computer und begannen erstmals mit dem Erstellen der Dokumentationsdokumente. (Repository wurde schon in der I-Phase aufgesetzt). Nun erstellten wir die nötigen Ordner im "implementation" Ordner, welcher wieder in drei Ordner aufgeteilt wurde:
 
@@ -217,7 +263,7 @@ Von dort aus clonten wir das Repository auf unsere lokalen Computer und begannen
 
 Zudem gibt es das HTML-Dokument `index.html`, in welchem sich, in nur einer Seite, unsere gesamte Struktur befindet.
 
-![our folderstructure](assets/folders.png)
+![(Unsere Ordnerstruktur)](assets/folders.png)
 
 ### 2.5.2 Entwicklung der Globe Engine
 Als zentrale Komponente wurde die Globe-Engine entwickelt. Sie ist für die Initialisierung der ThreeJS-Szene verantwortlich und verwaltet die wichtigsten Elemente wie Szene, Kamera und Renderer. 
@@ -227,7 +273,7 @@ Als zentrale Komponente wurde die Globe-Engine entwickelt. Sie ist für die Init
 * **Verarbeitung geografischer Koordinaten:** Da Satellitendaten üblicherweise in Längen- und Breitengraden bereitgestellt werden, wurde ein Modul zur Umrechnung geografischer Koordinaten entwickelt. Dieses berechnet die entsprechenden Positionen auf der dreidimensionalen Kugeloberfläche und bildet die Grundlage für die spätere Platzierung von Satellitenobjekten.
 * **Darstellung der Atmosphäre:** Zur Verbesserung der visuellen Darstellung wurde eine Atmosphärenschicht implementiert. Diese erzeugt einen leichten Leuchteffekt um die Erde und sorgt für ein realistischeres Erscheinungsbild des Globus.
 
-![picture of our planet](assets/Planet.jpeg)
+![(unsere erde angezeigt vom Satellitentracker)](assets/Planet.jpeg)
 
 ### 2.5.3 Implementation der API
 Zur Gewinnung aktueller TLE-Daten (Two-Line Element Sets) wurde ein dediziertes Services-Modul (`satelliteService.js`) entwickelt. Um eine robuste Datenpipeline zu garantieren, wurden parallele Abfragen mit einer Konkurrenzsteuerung implementiert. Dies stellt sicher, dass auch bei potenziellen Netzwerkverzögerungen keine Engpässe entstehen. Die Rohdaten werden bereinigt, Dubletten mittels NORAD-IDs gefiltert und in ein für die Applikation optimiertes Format konvertiert.
@@ -240,4 +286,77 @@ In diesem Schritt wurden die verarbeiteten Daten mit der Globe-Engine verknüpft
 Die Satelliten werden als `THREE.Sprite` gerendert, wobei Icons und Farben dynamisch anhand des Typs zugewiesen werden. Zudem wurde ein System für Flugbahnspuren implementiert, das die vergangenen Positionen visualisiert. Die Benutzeroberfläche wurde eng mit dem `SatelliteManager` verzahnt, um Funktionen wie Raycasting zur Objekt-Interaktion und eine "Follow-Funktion" für die Kamera zu ermöglichen.
 
 ### 2.5.5 Zwischenfazit der Realisierung
-Die modulare Architektur hat sich als äusserst effektiv erwiesen. Die Trennung von Datenbeschaffung, mathematischer Logik und Rendering ermöglicht eine performante Darstellung von mehreren hundert Objekten in Echtzeit und bildet ein solides Fundament für die anstehende finale Testphase.
+Die modulare Architektur hat sich als äusserst effektiv erwiesen. Die Trennung von Datenbeschaffung, mathematischer Logik und Rendering ermöglicht eine performante Darstellung von mehreren hundert Objekten in Echtzeit und bildet ein solides Fundament für die anstehende finale Testphase. 
+
+## 2.6 Kontrollieren
+
+!insert testbericht
+
+## 2.7 Auswerten
+
+### 2.6.1 Reflexion über die Arbeit
+Alles in allem konnten wir in diesem Projekt viel über die Arbeit in einem Projekt lernen. Wie man im Zeitplan möglicherweise sieht hatten wir insbesondere gegen ende eine gute Verzögerung gegenüber dem Soll Zeitplan. Daher mussten wir noch bis zum Schluss vollgas geben und fertig arbeiten. Wie oft gesagt ist man jedoch im Nachhinein immer schlauer und daher würden wir, wenn wir von neuem Anfangen müssten, uns definitiv anders strukturieren. Im Code und für das Dokumentieren könnten wir das erlernte aus dem Agile-Modul anwenden und unseren Code mit Agilen Methoden entwickeln. Wir konnten damit in einer ähnlichen Projektarbeit im BPMN Modul gute Erfahrungen machen.
+
+Zudem könnten wir definitiv noch mehr "Produktorientiert" arbeiten statt dass wir, wie jetzt, "Dokumentationsorientiert" arbeiteten. Wir investierten sehr viel zeit darauf alles für die Dokumentation möglichst effektiv umzusetzen und es war auch Organisatorisch im mittelpunkt. Das hiess dass beim tatsächlichen Codeprojekt es viel Chaotischer und Ineffizienter von statten ging.
+
+### 2.6.2 Schlusswort
+Zum Schluss wollten wir noch einige abschliessende Worte formulieren. Für uns war es eine sehr lehrreiche Erfahrung. Wenn auch nicht nur im Programmieren sondern auch im Organisieren konnten wir viele neue Erfahrungen machen. Wir wissen jetzt wie es ist in einem Team auf eine Deadline hin zu arbeiten und können dieses Wissen in unserer Zukunft verwenden. 
+Wir hoffen nun dass wir rechtzeitig abgeben können und dann eine saubere Präsentation vorzeigen können.
+
+## 2.8 Quellenverzeichnis
+
+1. NASA Space Physics Data Facility –> REST Web Services  
+   [https://sscweb.gsfc.nasa.gov/WebServices/REST/](https://sscweb.gsfc.nasa.gov/WebServices/REST/)
+
+2. CelesTrak –> Aktuelle Satellitendaten und TLE-Dateien  
+   [https://celestrak.org/](https://celestrak.org/)
+
+3. Three.js Dokumentation  
+   [https://threejs.org/docs/](https://threejs.org/docs/)
+
+4. satellite.js Dokumentation  
+   [https://github.com/shashwatak/satellite-js](https://github.com/shashwatak/satellite-js)
+
+5. MDN Web Docs – Fetch API und JavaScript  
+   [https://developer.mozilla.org/](https://developer.mozilla.org/)
+
+6. Git Dokumentation  
+   [https://git-scm.com/doc](https://git-scm.com/doc)
+
+7. ISO 9241-110 – Grundsätze der Dialoggestaltung
+   [https://www.iso.org/standard/77520.html](https://www.iso.org/standard/77520.html)
+
+## 2.9 Glossar
+
+| Begriff | Erklärung |
+|---------|-----------|
+| API (Application Programming Interface) | Schnittstelle, über welche Programme Daten oder Funktionen austauschen können. |
+| REST API | Web-Schnittstelle, welche HTTP-Anfragen verwendet und Daten häufig im JSON-Format liefert. |
+| HTTP | Protokoll zur Kommunikation zwischen Webbrowsern und Webservern. |
+| JSON | Leichtgewichtiges Datenformat zum Austausch strukturierter Informationen. |
+| TLE (Two-Line Element Set) | Standardformat zur Beschreibung der Umlaufbahn eines Satelliten. |
+| NORAD-ID | Weltweit eindeutige Identifikationsnummer eines Satelliten. |
+| Orbit | Umlaufbahn eines Satelliten um die Erde. |
+| ECI-Koordinaten | Earth-Centered Inertial Koordinatensystem zur Berechnung von Satellitenpositionen. |
+| Geografische Koordinaten | Beschreibung eines Ortes durch Breiten- und Längengrad. |
+| Rendering | Berechnung und Darstellung einer grafischen Szene durch den Computer. |
+| 3D-Globus | Dreidimensionale Darstellung der Erde zur Visualisierung von Satellitenpositionen. |
+| Three.js | JavaScript-Bibliothek zur Erstellung interaktiver 3D-Grafiken im Browser. |
+| satellite.js | JavaScript-Bibliothek zur Berechnung von Satellitenpositionen aus TLE-Daten. |
+| Sprite | Zweidimensionales Objekt, das in einer 3D-Szene dargestellt wird. |
+| Raycasting | Verfahren zur Erkennung, welches Objekt der Benutzer mit der Maus auswählt. |
+| User Experience (UX) | Gesamteindruck und Benutzererlebnis bei der Verwendung einer Anwendung. |
+| ISO 9241-110 | Internationale Norm für Grundsätze der benutzerfreundlichen Dialoggestaltung. |
+| Docker | Plattform zur Ausführung von Anwendungen in isolierten Containern. |
+| Git | Versionsverwaltungssystem zur Nachverfolgung von Änderungen im Quellcode. |
+| Repository | Speicherort eines Git-Projekts mit allen Dateien und Versionsinformationen. |
+| Frontend | Teil einer Anwendung, mit dem der Benutzer direkt interagiert. |
+| Backend | Serverseitiger Teil einer Anwendung. In diesem Projekt wird bewusst kein Backend verwendet. |
+| Caching | Zwischenspeichern von Daten, um wiederholte Anfragen zu beschleunigen und APIs zu entlasten. |
+| Deployment | Bereitstellung einer Anwendung auf einem Server oder Webhosting. |
+| Globe Engine | Softwarekomponente, welche den 3D-Globus sowie Kamera und Darstellung verwaltet. |
+| Objektorientierte Programmierung (OOP) | Programmierparadigma, bei dem Programme aus Objekten mit Daten und Funktionen aufgebaut werden. |
+
+## 2.10 Sourcecode
+
+Unseren gesamten Quellcode finden sie auf GitHub unter [github.com/Keinstein0/M306-Projektarbeit](https://github.com/Keinstein0/M306-Projektarbeit)
