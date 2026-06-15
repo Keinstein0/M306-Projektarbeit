@@ -1,56 +1,53 @@
 import { Satellite } from './satellite.js';
 
+const BATCH_SIZE = 25; 
+
 export class SatelliteManager {
     constructor(earthMesh) {
         this.earthMesh = earthMesh;
         this.satellites = [];
         this.searchQuery = '';
         this.activeFilter = 'all';
+        this._cursor = 0;
     }
 
     load(data) {
         if (!Array.isArray(data)) {
-            console.error("Satellite data is invalid or missing.");
+            console.error('Satellite data is invalid or missing.');
             return;
         }
 
         this.clear();
 
-        data.forEach(item => {
-            if (!item?.tle1 || !item?.tle2) return;
+        for (const item of data) {
+            if (!item?.tle1 || !item?.tle2) continue;
 
-            let satellite;
+            let sat;
             try {
-                satellite = new Satellite(item);
-            } catch (err) {
-                console.warn("Satellite creation failed:", item, err);
-                return;
+                sat = new Satellite(item);
+            } catch {
+                continue;
             }
 
-            if (!satellite?.sprite || !satellite?.trailLine) return;
+            if (!sat?.sprite || !sat?.trailLine) continue;
 
-            this.earthMesh.add(satellite.sprite);
-            this.earthMesh.add(satellite.trailLine);
-            this.satellites.push(satellite);
-        });
+            this.earthMesh.add(sat.sprite);
+            this.earthMesh.add(sat.trailLine);
+            this.satellites.push(sat);
+        }
 
+        this._cursor = 0;
         this.applyFilters();
     }
 
     clear() {
-        this.satellites.forEach(satellite => {
-            if (satellite.sprite) {
-                this.earthMesh.remove(satellite.sprite);
-                satellite.sprite.material?.map?.dispose?.();
-                satellite.sprite.material?.dispose?.();
-            }
-            if (satellite.trailLine) {
-                this.earthMesh.remove(satellite.trailLine);
-                satellite.trailLine.geometry?.dispose?.();
-                satellite.trailLine.material?.dispose?.();
-            }
-        });
+        for (const sat of this.satellites) {
+            if (sat.sprite)    this.earthMesh.remove(sat.sprite);
+            if (sat.trailLine) this.earthMesh.remove(sat.trailLine);
+            sat.dispose?.();
+        }
         this.satellites = [];
+        this._cursor = 0;
     }
 
     setSearchQuery(query) {
@@ -64,26 +61,35 @@ export class SatelliteManager {
     }
 
     applyFilters() {
-        this.satellites.forEach(satellite => {
-            const matchesSearch =
-                satellite.data.name.toLowerCase().includes(this.searchQuery);
-
-            const matchesFilter =
-                this.activeFilter === 'all' ||
-                satellite.data.type === this.activeFilter;
-
+        for (const sat of this.satellites) {
+            const matchesSearch = sat.data.name.toLowerCase().includes(this.searchQuery);
+            const matchesFilter = this.activeFilter === 'all' || sat.data.type === this.activeFilter;
             const visible = matchesSearch && matchesFilter;
 
-            satellite.sprite.visible = visible;
-            satellite.trailLine.visible = visible;
-        });
+            sat.sprite.visible    = visible;
+            sat.trailLine.visible = visible;
+        }
     }
 
     update() {
-        this.satellites.forEach(satellite => {
-            // Decoupled update tracking so positions are initialized background-wide
-            satellite.updatePosition();
-        });
+        const total = this.satellites.length;
+        if (total === 0) return;
+
+        const end = Math.min(this._cursor + BATCH_SIZE, total);
+        for (let i = this._cursor; i < end; i++) {
+            const sat = this.satellites[i];
+            if (sat.sprite.visible) {
+                sat.propagateTLE();
+            }
+        }
+        this._cursor = end >= total ? 0 : end;
+
+        for (let i = 0; i < total; i++) {
+            const sat = this.satellites[i];
+            if (sat.sprite.visible) {
+                sat.updateGeometryPosition();
+            }
+        }
     }
 
     getVisibleCount() {

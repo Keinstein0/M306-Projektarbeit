@@ -34,7 +34,6 @@ async function init() {
                 apiError
             );
             
-            // Map the offline fallback array directly matching the structural expectations of the Satellite constructor
             satellites = FALLBACK_DATA.map(sat => ({
                 name: sat.OBJECT_NAME,
                 noradId: sat.NORAD_CAT_ID,
@@ -44,8 +43,6 @@ async function init() {
             }));
         }
 
-        // 🚀 FIXED: Directly invoke the satelliteManager's load routine to 
-        // instantiate custom Satellite objects and register Three.js rendering meshes.
         engine.satelliteManager.load(satellites);
         updateSatelliteCount();
 

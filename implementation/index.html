@@ -3,63 +3,80 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Satellite Tracker</title>
+    <title>OrbitView: Live Satellite Tracker</title>
     <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
     <div class="app-layout">
-        <div class="globe-container">
+        <main class="globe-container">
             <div id="app"></div>
-        </div>
+        </main>
 
-        <div class="control-panel">
-            <h2 class="panel-title">Satellite Tracker</h2>
+        <aside class="control-panel">
+            <header class="panel-header">
+                <h1 class="panel-title">OrbitView Tracker</h1>
+                <p class="panel-subtitle">Real-time Space Object Telemetry</p>
+            </header>
 
-            <div class="section">
-                <h3 class="section-title">Navigation</h3>
-                <div class="input-row">
-                    <input id="lat" type="number" placeholder="Latitude" step="any" />
-                    <input id="lon" type="number" placeholder="Longitude" step="any" />
+            <section class="section" aria-labelledby="nav-title">
+                <h2 id="nav-title" class="section-title">Surface Navigation</h2>
+                <div class="input-group">
+                    <div class="input-field">
+                        <label for="lat">Latitude</label>
+                        <input id="lat" type="number" placeholder="0.0000" step="any" min="-90" max="90" />
+                    </div>
+                    <div class="input-field">
+                        <label for="lon">Longitude</label>
+                        <input id="lon" type="number" placeholder="0.0000" step="any" min="-180" max="180" />
+                    </div>
                 </div>
-                <button id="goBtn">Go To Position</button>
-            </div>
+                <button id="goBtn" class="btn btn-primary">Go To Position</button>
+            </section>
 
-            <div class="section">
-                <h3 class="section-title">Search</h3>
-                <input id="satelliteSearch" type="text" placeholder="Search satellite..." />
-            </div>
+            <section class="section" aria-labelledby="search-title">
+                <h2 id="search-title" class="section-title">Catalog Query</h2>
+                <div class="input-field">
+                    <label for="satelliteSearch">Object Designation / NORAD ID</label>
+                    <input id="satelliteSearch" type="text" placeholder="e.g., ISS, STARLINK..." />
+                </div>
+            </section>
 
-            <div class="section">
-                <h3 class="section-title">Filter Category</h3>
-                <select id="satelliteFilter">
-                    <option value="all">All Groups</option>
-                    <option value="station">Space Stations</option>
-                    <option value="communication">Communication</option>
-                    <option value="navigation">Navigation</option>
-                    <option value="weather">Weather</option>
-                    <option value="observation">Earth Observation</option>
-                    <option value="science">Scientific</option>
-                    <option value="military">Military</option>
-                </select>
-            </div>
+            <section class="section" aria-labelledby="filter-title">
+                <h2 id="filter-title" class="section-title">Filter Category</h2>
+                <div class="input-field">
+                    <label for="satelliteFilter">Select Array Classification</label>
+                    <select id="satelliteFilter" class="select-dropdown">
+                        <option value="all" selected>All Active Objects</option>
+                        <option value="station">Space Stations</option>
+                        <option value="communication">Communications Constellations</option>
+                        <option value="navigation">Navigation Systems (GPS/GNSS)</option>
+                        <option value="weather">Meteorological Satellites</option>
+                        <option value="observation">Earth Observation & Recon</option>
+                        <option value="science">Scientific Research Arrays</option>
+                        <option value="military">Defense Logistics</option>
+                    </select>
+                </div>
+            </section>
 
-            <div class="section">
-                <h3 class="section-title">Controls</h3>
-                <button id="followBtn">Follow Selected Satellite</button>
+            <section class="section" aria-labelledby="controls-title">
+                <h2 id="controls-title" class="section-title">Engine Matrix Controls</h2>
+                <button id="followBtn" class="btn btn-secondary">Follow Selected Satellite</button>
                 <div class="btn-row">
-                    <button onclick="window.toggleRotation()">Toggle Spin</button>
-                    <button onclick="window.resetView()">Reset View</button>
+                    <button class="btn btn-utility" onclick="window.toggleRotation()">Toggle Spin</button>
+                    <button class="btn btn-utility" onclick="window.resetView()">Reset View</button>
                 </div>
-                <div id="satelliteCount">Satellites Loaded: 0</div>
-            </div>
-        </div>
+                <footer class="panel-stats">
+                    <div id="satelliteCount" class="badge">Satellites Loaded: 0</div>
+                </footer>
+            </section>
+        </aside>
 
-        <div id="infoPanel">
-            <h2>Satellite Information</h2>
+        <section id="infoPanel" class="info-card" aria-live="polite">
+            <h2 class="card-title">Detailed Telemetry</h2>
             <div id="infoContent">
-                <p>Select a satellite to view information.</p>
+                <p class="placeholder-text">Select an active orbital track to acquire localized subsystem telemetry.</p>
             </div>
-        </div>
+        </section>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/satellite.js/4.0.0/satellite.min.js"></script>
