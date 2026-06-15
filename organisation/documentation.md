@@ -43,7 +43,7 @@ Diese Dokumentation ist stark von der Beispieldokumentation auf Moodle inspirier
 ...
 
 ## 1.6 Zeitplan
-![zeitplan](assets/zeitplan.png)
+![(unser Zeitplan)](assets/zeitplan.png)
 
 
 ## 1.7 Arbeitsjournal
@@ -184,13 +184,13 @@ Wir erstellten Testfälle um unser Projekt effektiv testen zu können und um her
 | 5  | API-Verbindung                    | API abrufen                |     Daten werden erfolgreich geladen                                          |
 | 6  | Informationsanzeige               | Satellit auswählen         |     Name, Position, Land, Geschwindigkeit und Antriebsart werden angezeigt    |
 
-### 2.3.3
+### 2.3.3 Klassendiagramm
 
 Obwohl unsere Applikation in JavaScript läuft entschieden wir uns unsere Applikation nach den Grundsätzen der Objekt Orientierten Programmierung zu Gruppieren. Mit der grossen Datenmenge mit der wir arbeiten ist das eine Notwendigkeit. 
 
-![uml Diagramm](assets/uml.png)
+![(UML Diagramm unseres Code)](assets/uml.png)
 
-### 2.3.4
+### 2.3.4 Interaktionsdiagramm
 Die Interaktionen arbeiten wie in folgendem UML Interaktionsdiagramm dokumentiert. Der Nutzer greift via das UI auf das UI der Webseite zu. Sobald er eine Anfrage macht um neue Satelliten zu sehen, wird eine HTTP Request an die externe API gemacht, welche uns dann im JSON format eine Ungefilterte Antwort gibt. Diese wird dann von einem Verarbeiter im Hintergrund in eine für uns Nutzbare (gefiltert und neuverpackt) Form gebracht. So kann der Globus im UI dann schliesslich die fertigen Satelliten anzeigen.
 
 ![interaction](assets/interaction2.png)
@@ -253,7 +253,7 @@ Fazit: Das CelesTrak API passt für unseres Projekt am besten wegen eine simpler
 ### 2.5.1 Aufsetzen des Projektes
 Zu Beginn mussten wir das Projekt erst einmal erstellen. Hierfür begannen wir damit, ein Git Repository zu erstellen, um uns die Kollaboration später zu vereinfachen und unsere Dateien sicher aufzubewahren. 
 
-![picture of our current github](assets/github.png)
+![(Unser aktuelles GitHub)](assets/github.png)
 
 Von dort aus clonten wir das Repository auf unsere lokalen Computer und begannen erstmals mit dem Erstellen der Dokumentationsdokumente. (Repository wurde schon in der I-Phase aufgesetzt). Nun erstellten wir die nötigen Ordner im "implementation" Ordner, welcher wieder in drei Ordner aufgeteilt wurde:
 
@@ -263,7 +263,7 @@ Von dort aus clonten wir das Repository auf unsere lokalen Computer und begannen
 
 Zudem gibt es das HTML-Dokument `index.html`, in welchem sich, in nur einer Seite, unsere gesamte Struktur befindet.
 
-![our folderstructure](assets/folders.png)
+![(Unsere Ordnerstruktur)](assets/folders.png)
 
 ### 2.5.2 Entwicklung der Globe Engine
 Als zentrale Komponente wurde die Globe-Engine entwickelt. Sie ist für die Initialisierung der ThreeJS-Szene verantwortlich und verwaltet die wichtigsten Elemente wie Szene, Kamera und Renderer. 
@@ -273,7 +273,7 @@ Als zentrale Komponente wurde die Globe-Engine entwickelt. Sie ist für die Init
 * **Verarbeitung geografischer Koordinaten:** Da Satellitendaten üblicherweise in Längen- und Breitengraden bereitgestellt werden, wurde ein Modul zur Umrechnung geografischer Koordinaten entwickelt. Dieses berechnet die entsprechenden Positionen auf der dreidimensionalen Kugeloberfläche und bildet die Grundlage für die spätere Platzierung von Satellitenobjekten.
 * **Darstellung der Atmosphäre:** Zur Verbesserung der visuellen Darstellung wurde eine Atmosphärenschicht implementiert. Diese erzeugt einen leichten Leuchteffekt um die Erde und sorgt für ein realistischeres Erscheinungsbild des Globus.
 
-![picture of our planet](assets/Planet.jpeg)
+![(unsere erde angezeigt vom Satellitentracker)](assets/Planet.jpeg)
 
 ### 2.5.3 Implementation der API
 Zur Gewinnung aktueller TLE-Daten (Two-Line Element Sets) wurde ein dediziertes Services-Modul (`satelliteService.js`) entwickelt. Um eine robuste Datenpipeline zu garantieren, wurden parallele Abfragen mit einer Konkurrenzsteuerung implementiert. Dies stellt sicher, dass auch bei potenziellen Netzwerkverzögerungen keine Engpässe entstehen. Die Rohdaten werden bereinigt, Dubletten mittels NORAD-IDs gefiltert und in ein für die Applikation optimiertes Format konvertiert.
@@ -306,25 +306,25 @@ Wir hoffen nun dass wir rechtzeitig abgeben können und dann eine saubere Präse
 ## 2.8 Quellenverzeichnis
 
 1. NASA Space Physics Data Facility –> REST Web Services  
-   https://sscweb.gsfc.nasa.gov/WebServices/REST/
+   [https://sscweb.gsfc.nasa.gov/WebServices/REST/](https://sscweb.gsfc.nasa.gov/WebServices/REST/)
 
 2. CelesTrak –> Aktuelle Satellitendaten und TLE-Dateien  
-   https://celestrak.org/
+   [https://celestrak.org/](https://celestrak.org/)
 
 3. Three.js Dokumentation  
-   https://threejs.org/docs/
+   [https://threejs.org/docs/](https://threejs.org/docs/)
 
 4. satellite.js Dokumentation  
-   https://github.com/shashwatak/satellite-js
+   [https://github.com/shashwatak/satellite-js](https://github.com/shashwatak/satellite-js)
 
 5. MDN Web Docs – Fetch API und JavaScript  
-   https://developer.mozilla.org/
+   [https://developer.mozilla.org/](https://developer.mozilla.org/)
 
 6. Git Dokumentation  
-   https://git-scm.com/doc
+   [https://git-scm.com/doc](https://git-scm.com/doc)
 
 7. ISO 9241-110 – Grundsätze der Dialoggestaltung
-   https://www.iso.org/standard/77520.html
+   [https://www.iso.org/standard/77520.html](https://www.iso.org/standard/77520.html)
 
 ## 2.9 Glossar
 
