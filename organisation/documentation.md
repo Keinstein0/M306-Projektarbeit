@@ -3,15 +3,16 @@
 ## 1.1 Aufgabenstellung
 
 ### Ausgangslage
-Hunderte wenn nicht Tausende von Satelliten kreisen um die Erde. Manche zeigen dir deine Position, manche beobachten die Sterne und manche kommunizieren die neusten News. Manche dieser Satelliten kann man sogar von Auge im Himmel sehen. Was jedoch mit denjenigen die man nicht von Auge sehen kann? Diese kann man als Laie nur schwer selber finden. 
-Daher bieten teils Anbieter HTTP APIs die die Live-Positionen aller Satelliten beobachten können und im JSON format an den Nutzer schicken.
 
+Hunderte, wenn nicht Tausende, von Satelliten kreisen um die Erde. Manche zeigen dir deine Position, manche beobachten die Sterne und manche kommunizieren die neusten News. Manche dieser Satelliten kann man sogar mit blossem Auge im Himmel sehen. Was jedoch mit denjenigen, die man nicht mit blossem Auge sehen kann? Diese kann man als Laie nur schwer selber finden.
+Daher bieten teils Anbieter HTTP-APIs, die die Live-Positionen aller Satelliten beobachten können und im JSON-Format an den Nutzer schicken.
 
 ### Detaillierte Aufgabenstellung
+
 Als raumfahrt-interessierter Laie möchte ich mich über die Position von unterschiedlichsten Satelliten informieren. Dafür möchte ich einen Web Tracker zur Verfolgung von Satelliten in Echtzeit verwenden. Der Tracker soll es Nutzerinnen und Nutzern ermöglichen, aktuelle Positionen von Satelliten zu visualisieren, deren Flugbahnen nachzuvollziehen und relevante Informationen wie Name, Position, Land, Geschwindigkeit und Antriebsart zu sehen.
-Im Projekt soll dies durch die Nutzung öffentlich verfügbarer Satellitendaten (z. B. NASA API https://sscweb.gsfc.nasa.gov/WebServices/REST/) umgesetzt werden. 
-Diese Daten werden verarbeitet und in einer benutzerfreundlichen Oberfläche dargestellt mit Übersicht von Name, Position, Land, Geschwindigkeit, Antriebsart werden.
-Die Anwendung soll als Web -App entwickelt werden. 
+Im Projekt soll dies durch die Nutzung öffentlich verfügbarer Satellitendaten (CelesTrak -> https://celestrak.org/NORAD/elements/gp.php?INTDES=2020-025&FORMAT=JSON) umgesetzt werden.
+Diese Daten werden verarbeitet und in einer benutzerfreundlichen Oberfläche dargestellt mit einer Übersicht von Name, Position, Land, Geschwindigkeit und Antriebsart werden.
+Die Anwendung soll als Web-App entwickelt werden.
 
 #### Funktionale Anforderungen:
 - 1	Es soll eine Kartenansicht (Globus) integriert werden.
@@ -21,13 +22,12 @@ Die Anwendung soll als Web -App entwickelt werden.
 - 5 Es können mindestens 10 Satelliten parallel zu einander angezeigt werden
 - 6 Die Applikation soll ohne ein Backend auskommen
 - 7 Die Applikation soll ohne ein Login auskommen
-- 8 Die Applikation soll Web-Basiert sein um sie zugänglicher zu mehr Nutzern zu machen
-
+- 8 Die Applikation soll webbasiert sein um sie zugänglicher zu mehr Nutzern zu mache
 
 ## 1.2 Projektorganisation
-Dieses Projekt ist als übungsdurchlauf für die tatsächliche IPA gedacht und so sind die Projektanforderungen von uns an uns gestellt worden. Unser Betreuer für dieses Projekt ist Herr Colic der BBBaden. Er ist zudem auch unser Hauptexperte. Wir Absolvieren die IPA an der BBBaden sowie via Home Office. 
+Dieses Projekt ist als Übungsdurchlauf für die tatsächliche IPA gedacht und so sind die Projektanforderungen von uns an uns gestellt worden. Unser Betreuer für dieses Projekt ist Herr Colic der BBBaden. Er ist zudem auch unser Hauptexperte. Wir absolvieren die IPA an der BBBaden sowie via Homeoffice.
 
-Unser Projektmanagement basiert auf IPERKA da es uns so Vorgegeben wurde und es auch für dieses Projekt der "Path of least resistance" ist. 
+Unser Projektmanagement basiert auf IPERKA, da es uns so vorgegeben wurde und es auch für dieses Projekt der "Path of least resistance" ist.
 
 ## 1.3 Deklaration der Vorkenntnisse
 - HTML/CSS: Gute Kenntnisse -> Umsetzung von statischen Web-basierten Projekten.
