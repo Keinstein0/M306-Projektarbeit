@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OrbitView: Live Satellite Tracker</title>
+    <title>Orbitron: Live Satellite Tracker</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js",
+                "satellite.js": "https://cdn.jsdelivr.net/npm/satellite.js@4.0.0/+esm"
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="app-layout">
@@ -14,7 +24,7 @@
 
         <aside class="control-panel">
             <header class="panel-header">
-                <h1 class="panel-title">OrbitView Tracker</h1>
+                <h1 class="panel-title">Orbitron Tracker</h1>
                 <p class="panel-subtitle">Real-time Space Object Telemetry</p>
             </header>
 
@@ -42,7 +52,8 @@
             </section>
 
             <section class="section" aria-labelledby="filter-title">
-                <h2 id="filter-title" class="section-title">Filter Category</h2>
+                <h2 id="filter-title" class="section-title">Filter Configuration</h2>
+                
                 <div class="input-field">
                     <label for="satelliteFilter">Select Array Classification</label>
                     <select id="satelliteFilter" class="select-dropdown">
@@ -54,6 +65,18 @@
                         <option value="observation">Earth Observation & Recon</option>
                         <option value="science">Scientific Research Arrays</option>
                         <option value="military">Defense Logistics</option>
+                    </select>
+                </div>
+
+                <div class="input-field">
+                    <label for="satelliteCountry">Select Operator / Country</label>
+                    <select id="satelliteCountry" class="select-dropdown">
+                        <option value="all" selected>All Nations / Operators</option>
+                        <option value="US">United States (NASA / SpaceX)</option>
+                        <option value="RU">Russia (Roscosmos)</option>
+                        <option value="EU">Europe (ESA / Galileo)</option>
+                        <option value="CN">China (CNSA)</option>
+                        <option value="IN">India (ISRO)</option>
                     </select>
                 </div>
             </section>
@@ -79,7 +102,6 @@
         </section>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/satellite.js/4.0.0/satellite.min.js"></script>
     <script type="module" src="javascript/globe.js"></script>
 </body>
 </html>
