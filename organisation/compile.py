@@ -55,5 +55,5 @@ def compile_markdown(input_file="document.md", output_file="output.docx"):
 if __name__ == "__main__":
     # Allows usage: python compile.py custom.md final.docx
     infile = sys.argv[1] if len(sys.argv) > 1 else "documentation.md"
-    outfile = sys.argv[2] if len(sys.argv) > 2 else "Output_Document.docx"
+    outfile = sys.argv[2] if len(sys.argv) > 2 else "LB_306_Satellitenprojekt.docx"
     compile_markdown(infile, outfile)
