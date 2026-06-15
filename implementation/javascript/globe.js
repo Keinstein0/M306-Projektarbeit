@@ -5,6 +5,7 @@ import { FALLBACK_DATA } from './fallbackSatellites.js';
 
 const container = document.getElementById('app');
 const engine = new GlobeEngine(container);
+const infoContentEl = document.getElementById('infoContent');
 
 function updateSatelliteCount() {
     const manager = engine.satelliteManager;
@@ -45,13 +46,37 @@ async function init() {
 
         engine.satelliteManager.load(satellites);
         updateSatelliteCount();
+        startTelemetryLoop();
 
     } catch (criticalError) {
         console.error('❌ Critical error setting up scene layout engine context:', criticalError);
-
         const countEl = document.getElementById('satelliteCount');
         if (countEl) countEl.textContent = 'Fatal error initializing engine';
     }
+}
+
+function startTelemetryLoop() {
+    function update() {
+        requestAnimationFrame(update);
+    
+        const selected = engine.selectedSatellite || engine.satelliteManager?.selectedSatellite;
+        
+        if (selected && infoContentEl) {
+            infoContentEl.innerHTML = `
+                <p>${selected.data.name || 'Unknown Object'}</p>
+                <p><strong>NORAD ID</strong> <span>#${selected.data.noradId || 'N/A'}</span></p>
+                <p><strong>Latitude</strong> <span>${selected.position.latitude.toFixed(4)}°</span></p>
+                <p><strong>Longitude</strong> <span>${selected.position.longitude.toFixed(4)}°</span></p>
+                <p><strong>Altitude</strong> <span>${selected.position.altitude.toFixed(1)} km</span></p>
+                <p><strong>Velocity</strong> <span>${Math.round(selected.speedKmh).toLocaleString()} km/h</span></p>
+                <p><strong>Operator</strong> <span>${selected.countryName || 'International'}</span></p>
+                <p><strong>Propulsion</strong> <span>${selected.propulsion || 'Standard'}</span></p>
+            `;
+        } else if (infoContentEl && !infoContentEl.querySelector('.placeholder-text')) {
+            infoContentEl.innerHTML = `<p class="placeholder-text">Select an active orbital track to acquire localized subsystem telemetry.</p>`;
+        }
+    }
+    update();
 }
 
 init();
@@ -63,6 +88,15 @@ document.getElementById('satelliteSearch').oninput = (e) => {
 
 document.getElementById('satelliteFilter').onchange = (e) => {
     engine.satelliteManager.setFilter(e.target.value);
+    updateSatelliteCount();
+};
+
+document.getElementById('satelliteCountry').onchange = (e) => {
+    if (typeof engine.satelliteManager.setCountryFilter === 'function') {
+        engine.satelliteManager.setCountryFilter(e.target.value);
+    } else if (typeof engine.satelliteManager.setCountry === 'function') {
+        engine.satelliteManager.setCountry(e.target.value);
+    }
     updateSatelliteCount();
 };
 

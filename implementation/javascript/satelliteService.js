@@ -74,20 +74,8 @@ export class SatelliteService {
         const url = `/api/celestrak/NORAD/elements/gp.php?GROUP=${source.group}&FORMAT=tle`;
 
         try {
-            let response = await this.fetchWithTimeout(url);
+            const response = await this.fetchWithTimeout(url);
             
-            if (!response.ok || response.status === 502 || response.status === 504) {
-                try {
-                    const directUrl = `https://celestrak.org/NORAD/elements/gp.php?GROUP=${source.group}&FORMAT=tle`;
-                    const directResponse = await this.fetchWithTimeout(directUrl);
-                    if (directResponse.ok) {
-                        response = directResponse;
-                    }
-                } catch (directErr) {
-                    console.warn("Direct CelesTrak fallback route failed:", directErr);
-                }
-            }
-
             if (response.status === 403) {
                 console.warn(`⏱ CelesTrak rate-limited ${source.group}. Trying cache fallback...`);
                 if (cacheResult?.data) return cacheResult.data;
@@ -163,6 +151,27 @@ export class SatelliteService {
         return groupType;
     }
 
+    classifyByCountry(name) {
+        const n = name.toUpperCase();
+        
+        if (/STARLINK|GPS|NAVSTAR|ISS|COSMIC|GOES|NOAA|NURS|TDRS|CYGNUS/.test(n)) {
+            return 'US';
+        }
+        if (/COSMOS|GLONASS|SOYUZ|PROGRESS|METEOR|RESURS|ELEKTRON/.test(n)) {
+            return 'RU';
+        }
+        if (/GALILEO|SENTINEL|METOP|ERS-|ENVISAT|ALOS|SPOT|HELIOS/.test(n)) {
+            return 'EU';
+        }
+        if (/BEIDOU|CHINASAT|TIANGONG|TIANHE|SHENZHOU|FENGYUN|YAOGAN|LONG MARCH/.test(n)) {
+            return 'CN';
+        }
+        if (/IRS-|INSAT|CARTOSAT|RESOURCESAT|OCEANSAT|GSAT|PSLV|GSLV/.test(n)) {
+            return 'IN';
+        }
+        return 'UNKNOWN';
+    }
+
     async runWithConcurrency(items, worker) {
         const results = [];
         const executing = new Set();
@@ -206,6 +215,7 @@ export class SatelliteService {
                 const noradId = sat.NORAD_CAT_ID ? String(sat.NORAD_CAT_ID) : null;
                 if (!noradId || seenIds.has(noradId)) return;
                 const type = this.classifyByName(sat.OBJECT_NAME, source.type);
+                const country = this.classifyByCountry(sat.OBJECT_NAME);
 
                 satellites.push({
                     name: sat.OBJECT_NAME,
@@ -213,6 +223,7 @@ export class SatelliteService {
                     tle1: sat.TLE_LINE1,
                     tle2: sat.TLE_LINE2,
                     type,
+                    country,
                 });
 
                 seenIds.add(noradId);

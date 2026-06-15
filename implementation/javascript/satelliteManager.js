@@ -1,6 +1,6 @@
 import { Satellite } from './satellite.js';
 
-const BATCH_SIZE = 25; 
+const BATCH_SIZE = 15;
 
 export class SatelliteManager {
     constructor(earthMesh) {
@@ -8,6 +8,7 @@ export class SatelliteManager {
         this.satellites = [];
         this.searchQuery = '';
         this.activeFilter = 'all';
+        this.activeCountryFilter = 'all';
         this._cursor = 0;
     }
 
@@ -25,7 +26,8 @@ export class SatelliteManager {
             let sat;
             try {
                 sat = new Satellite(item);
-            } catch {
+            } catch (err) {
+                console.error('Failed to parse satellite item:', err);
                 continue;
             }
 
@@ -42,9 +44,9 @@ export class SatelliteManager {
 
     clear() {
         for (const sat of this.satellites) {
-            if (sat.sprite)    this.earthMesh.remove(sat.sprite);
-            if (sat.trailLine) this.earthMesh.remove(sat.trailLine);
-            sat.dispose?.();
+            if (sat && sat.sprite)    this.earthMesh.remove(sat.sprite);
+            if (sat && sat.trailLine) this.earthMesh.remove(sat.trailLine);
+            sat?.dispose?.();
         }
         this.satellites = [];
         this._cursor = 0;
@@ -60,14 +62,23 @@ export class SatelliteManager {
         this.applyFilters();
     }
 
+    setCountryFilter(country) {
+        this.activeCountryFilter = country;
+        this.applyFilters();
+    }
+
     applyFilters() {
         for (const sat of this.satellites) {
+            if (!sat || !sat.data) continue;
+            
             const matchesSearch = sat.data.name.toLowerCase().includes(this.searchQuery);
             const matchesFilter = this.activeFilter === 'all' || sat.data.type === this.activeFilter;
-            const visible = matchesSearch && matchesFilter;
+            const matchesCountry = this.activeCountryFilter === 'all' || sat.data.country === this.activeCountryFilter;
+            
+            const visible = matchesSearch && matchesFilter && matchesCountry;
 
-            sat.sprite.visible    = visible;
-            sat.trailLine.visible = visible;
+            if (sat.sprite) sat.sprite.visible = visible;
+            if (sat.trailLine) sat.trailLine.visible = visible;
         }
     }
 
@@ -76,23 +87,23 @@ export class SatelliteManager {
         if (total === 0) return;
 
         const end = Math.min(this._cursor + BATCH_SIZE, total);
+
         for (let i = this._cursor; i < end; i++) {
             const sat = this.satellites[i];
-            if (sat.sprite.visible) {
-                sat.propagateTLE();
+            
+            if (sat && typeof sat.updatePosition === 'function') {
+                if (sat.sprite && sat.sprite.visible) {
+                    sat.updatePosition();
+                }
+            } else if (sat) {
+                console.warn('⚠️ Ungültiges Satelliten-Objekt im Array entdeckt:', sat);
             }
         }
-        this._cursor = end >= total ? 0 : end;
 
-        for (let i = 0; i < total; i++) {
-            const sat = this.satellites[i];
-            if (sat.sprite.visible) {
-                sat.updateGeometryPosition();
-            }
-        }
+        this._cursor = end >= total ? 0 : end;
     }
 
     getVisibleCount() {
-        return this.satellites.filter(s => s.sprite?.visible).length;
+        return this.satellites.filter(s => s?.sprite?.visible).length;
     }
 }
